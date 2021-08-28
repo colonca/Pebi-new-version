@@ -1,0 +1,46 @@
+version: '3.8'
+services: 
+  nginx:
+    image: nginx:alpine
+    container_name: pebi-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks: 
+      - pebi
+  app:
+    build:
+      args:
+         user: pebi
+         uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: pebi
+    container_name: pebi-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/php:/usr/local/etc/php
+    networks:
+      - pebi
+  mysql:
+    image: mysql:5.7
+    container_name: pebi-db
+    restart: unless-stopped
+    environment: 
+      MYSQL_DATABASE: pebi
+      MYSQL_USER: pebi
+      MYSQL_PASSWORD: secret 
+      MYSQL_ROOT_PASSWORD: admin.root
+    ports:
+      - 33068:3306
+    volumes:
+      - ./docker-compose/mysql:/var/lib/mysql
+    networks:
+      - pebi
+networks:
+    pebi:
