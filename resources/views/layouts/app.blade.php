@@ -26,6 +26,10 @@
             <x-sidebar />
             <div class="panel flex-grow flex flex-col overflow-y-auto px-6 mt-8">
                 <x-navbar />
+                <x-breadcrumbs :items="[
+                        ['title' => 'Home', 'url' => 'dashboard'],
+                        ['title' => 'Talleres Grupales', 'url' => 'talleres_grupales']
+                ]" />
             </div>
         </div>
     </div>
