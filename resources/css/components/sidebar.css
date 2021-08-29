@@ -1,0 +1,7 @@
+.sidebar__link__item {
+   @apply py-2 px-2 mb-2 text-gray-700 w-5/6
+}
+
+.sidebar__link__active {
+     @apply  bg-gray-900 text-gray-50 font-semibold rounded-md  
+}
