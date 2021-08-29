@@ -24,8 +24,8 @@
     <div class="flex flex-col h-screen">
         <div class="flex flex-1 overflow-y-hidden">
             <x-sidebar />
-            <div class="panel overflow-y-auto px-6 mt-4">
-                loremasdfasdfasdfa
+            <div class="panel flex-grow flex flex-col overflow-y-auto px-6 mt-8">
+                <x-navbar />
             </div>
         </div>
     </div>
