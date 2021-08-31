@@ -1,4 +1,4 @@
-<div class="navbar flex justify-between items-center">
+<div class="navbar flex items-center">
     <!-- Simplicity is an acquired taste. - Katharine Gerould -->
     <div class="navbar__title text-gray-800 text-xl font-semibold flex-grow">
         Dashboard

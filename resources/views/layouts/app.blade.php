@@ -23,13 +23,12 @@
 <body class="font-sans antialiased">
     <div class="flex flex-col h-screen">
         <div class="flex flex-1 overflow-y-hidden">
-            <x-sidebar />
-            <div class="panel flex-grow flex flex-col overflow-y-auto px-6 mt-8">
+            <x-sidebar.main/>
+            <div class="panel flex-grow flex flex-col px-6 mt-8">
                 <x-navbar />
-                <x-breadcrumbs :items="[
-                        ['title' => 'Home', 'url' => 'dashboard'],
-                        ['title' => 'Talleres Grupales', 'url' => 'talleres_grupales']
-                ]" />
+                <div class="flex-grow overflow-y-auto">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>
