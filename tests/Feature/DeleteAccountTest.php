@@ -18,7 +18,6 @@ class DeleteAccountTest extends TestCase
         if (! Features::hasAccountDeletionFeatures()) {
             return $this->markTestSkipped('Account deletion is not enabled.');
         }
-
         $this->actingAs($user = User::factory()->create());
 
         $component = Livewire::test(DeleteUserForm::class)
