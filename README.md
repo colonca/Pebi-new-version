@@ -1,10 +1,18 @@
 #Pasos para ejecutar el proyecto
 
+renombrar el .env.example a .env
+
+Luego ejecutar desde la terminal los siguientes comandos
+
 docker-compose up -d
 
 docker exec -ti pebi-app bash
 
 composer install
+
+php artisan key:generate
+
+php artisan migration
 
 exit
 
