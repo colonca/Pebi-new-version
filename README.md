@@ -1,25 +1,46 @@
-#Pasos para ejecutar el proyecto
+## 🚀 Environment Setup
 
-renombrar el .env.example a .env
+### 🐳 Needed tools
 
-Luego ejecutar desde la terminal los siguientes comandos
+1. [Install Docker](https://www.docker.com/get-started)
+2. [Install Docker-Compose](https://www.docker.com/get-started)
+2. Clone this project: `git clone https://github.com/colonca/Pebi-new-version`
+3. Move to the project folder: `cd Pebi-new-version`
 
+### 🛠️ Environment configuration
+
+1. renombrar el archivo de configuracion de ejemplo (`mv .env.examples .env`).
+
+2. Inicializar el contenedor de docker.
+
+```bash
 docker-compose up -d
+```
 
-docker exec -ti pebi-app bash
+3. Abrir el contenedor de la aplicación en el modo iterativo.
 
+```bash
+docker exec -ti pebi-app bashdocker-compose up -d
+```
+
+4. Instalación de dependencias, crear key y correr las migraciones.
+
+```bash
 composer install
-
 php artisan key:generate
-
 php artisan migration
+```
 
+5. salir del modo iterativo
+
+```bash
 exit
+```
 
-npm install && npm run dev
+6. Instalar las dependencias de javascript
 
-Listo el proyecyto esta corriendo en el puerto 8000
-
-http://localhost:8000
-
+```bash
+npm install
+npm run dev
+```
 
