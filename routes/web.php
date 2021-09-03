@@ -17,6 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    //pagina principal despues de que el usuario se haya logueado
+    Route::view('/dashboard','dashboard');
+
+    //modulo de generales
+    Route::prefix('generales')->group(function() {
+      Route::view('/talleres-grupales', 'pages.generales.talleres_grupales.index');
+    });
+
+
+});

@@ -18,14 +18,18 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>     
 </head>
 
 <body class="font-sans antialiased">
     <div class="flex flex-col h-screen">
         <div class="flex flex-1 overflow-y-hidden">
-            <x-sidebar />
-            <div class="panel flex-grow flex flex-col overflow-y-auto px-6 mt-8">
+            <x-sidebar.main/>
+            <div class="panel flex-grow flex flex-col px-6 mt-8">
                 <x-navbar />
+                <div class="flex-grow overflow-y-auto">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>
