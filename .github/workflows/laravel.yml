@@ -71,4 +71,4 @@ jobs:
         run: |
           docker-compose -f docker-compose.prod.yml build
           docker ps
-          docker push $ECR_REGISTRY/pebi:app
+          docker push $ECR_REGISTRY/app
