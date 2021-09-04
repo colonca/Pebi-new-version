@@ -68,4 +68,5 @@ jobs:
       - name: Docker Compuse build
         run: |
           docker-compose -f docker-compose.prod.yml build
+          docker ps
           docker-compose push
