@@ -1,7 +1,7 @@
 version: '3.8'
 services: 
   nginx:
-    image: nginx:alpine
+    image: 528490145188.dkr.ecr.us-east-2.amazonaws.com/nginx:alpine
     container_name: pebi-nginx
     restart: unless-stopped
     ports:
@@ -18,7 +18,7 @@ services:
          uid: 1000
       context: ./
       dockerfile: Dockerfile
-    image: pebi
+    image: 528490145188.dkr.ecr.us-east-2.amazonaws.com/pebi-app
     container_name: pebi-app
     restart: unless-stopped
     working_dir: /var/www/
@@ -28,7 +28,7 @@ services:
     networks:
       - pebi
   mysql:
-    image: mysql:5.7
+    image: 528490145188.dkr.ecr.us-east-2.amazonaws.com/mysql:5.7
     container_name: pebi-db
     restart: unless-stopped
     environment: 
@@ -37,7 +37,7 @@ services:
       MYSQL_PASSWORD: secret 
       MYSQL_ROOT_PASSWORD: admin.root
     ports:
-      - 33068:3306
+      - 3306:3306
     volumes:
       - ./docker-compose/mysql:/var/lib/mysql
     networks:
