@@ -17,7 +17,7 @@ services:
          uid: 1000
       context: ./
       dockerfile: Dockerfile
-    image: 528490145188.dkr.ecr.us-east-2.amazonaws.com/pebi-app
+    image: 528490145188.dkr.ecr.us-east-2.amazonaws.com/app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
