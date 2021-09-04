@@ -72,3 +72,5 @@ jobs:
           docker-compose -f docker-compose.prod.yml build
           docker ps
           docker push $ECR_REGISTRY/app
+          docker push $ECR_REGISTRY/nginx
+          docker push $ECR_REGISTRY/mysql
