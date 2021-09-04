@@ -66,5 +66,5 @@ jobs:
           echo "::set-output name=password::`aws ecr get-login-password`"
       - name: Docker Compuse build
         run: |
-          docker-compose -f docker.compose.prod.yml build
+          docker-compose -f docker-compose.prod.yml build
           docker-compose push
