@@ -57,7 +57,3 @@ jobs:
            cd Pebi-new-version
            git checkout -f 
            git pull
-           docker exec -t pebi-app bash
-           php artisan migrate --force
-           php artisan optimize
-           exit
