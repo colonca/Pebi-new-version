@@ -52,5 +52,5 @@ jobs:
       with:
         username: ${{secrets.SSH_USERNAME}} 
         host: ${{secrets.SSH_HOST}} 
-        password: ${{ secrets.SSH_PASSWORD }}
+        key: ${{ secrets.SSH_PRIVATE_KEY}}
         script: './server_deploy.sh' 
