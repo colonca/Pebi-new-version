@@ -54,8 +54,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
-           cd /var/www
+           cd Pebi-new-version
            git checkout -f 
            git pull
            php artisan migrate --force
-           php artisan optimize
