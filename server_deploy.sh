@@ -20,9 +20,6 @@ docker exec -ti pebi-app bash
     # Migrate database
     php artisan migrate --force
 
-    # Note: If you're using queue workers, this is the place to restart them.
-    # ...
-
     # Clear cache
     php artisan optimize
 
