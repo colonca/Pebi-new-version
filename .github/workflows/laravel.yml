@@ -60,3 +60,4 @@ jobs:
            docker exec -t pebi-app bash
            php artisan migrate --force
            php artisan optimize
+           exit
