@@ -34,43 +34,23 @@ jobs:
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
   deploy:
-
-    name: Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PUSH_TOKEN }}
 
-      - name: Validate composer
-        run: |
-          composer validate
-      
-      - name: Install dependencies
-        run: |
-          composer install --optimize-autoloader --prefer-dist --no-progress --no-suggest
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+    - name: Set up Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm run production
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: Get AWS ECR credentials
-        id: ecr-credentials
-        run: |
-          echo "::set-output name=username::AWS"
-          echo "::set-output name=password::`aws ecr get-login-password`"
-      - name: Docker Compuse build
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        run: |
-          docker-compose -f docker-compose.prod.yml build
-          docker ps
-          docker push $ECR_REGISTRY/app
-          docker push $ECR_REGISTRY/nginx
-          docker push $ECR_REGISTRY/mysql
+    - name: Deploy to production
+      uses: appleboy/ssh-action@master
+      with:
+        username: ${{secrets.SSH_USERNAME}} 
+        host: ${{secrets.SSH_HOST}} 
+        password: ${{ secrets.SSH_PASSWORD }}
+        script: './server_deploy.sh' 
