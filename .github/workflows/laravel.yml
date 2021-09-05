@@ -53,4 +53,9 @@ jobs:
         host: ${{ secrets.SSH_HOST }} 
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        script:  sh server_deploy.sh
+        script: |
+           cd /var/www
+           git checkout -f 
+           git pull
+           php artisan migrate --force
+           php artisan optimize
