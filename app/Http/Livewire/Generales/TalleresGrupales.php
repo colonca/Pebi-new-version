@@ -79,6 +79,7 @@ class TalleresGrupales extends Component
     public function delete() {
         Talleres::find($this->taller_id)->delete();
         $this->confirmacion = false;
+        $this->resetInputFields();
         $this->message('Taller grupal eliminado correctamente');
     }
 
