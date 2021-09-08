@@ -3,12 +3,15 @@
 namespace App\Http\Livewire\Generales;
 
 use App\Models\Generales\TalleresGrupales as Talleres;
+use App\Support\Concerns\InteractsWithFlashMessage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class TalleresGrupales extends Component
 {
     use WithPagination;
+    use InteractsWithFlashMessage;
+
     public $taller_id;
     public string $nombre = '';
     public string $descripcion = '';
@@ -47,9 +50,8 @@ class TalleresGrupales extends Component
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion 
         ]);
-        
-        session()->flash('message','Taller Grupal Guardado correctamente');
         $this->resetInputFields();
+        $this->message('Taller grupal guardado correctamente');
     }
 
     public function edit($id) {
@@ -70,14 +72,14 @@ class TalleresGrupales extends Component
             'descripcion' => $this->descripcion
         ]);
         $this->updateMode = false;
-        session()->flash('message','Taller Grupal Actualizado correctamente');
+        $this->message('Taller grupal actualizado correctamente');
         $this->resetInputFields();
     }
 
     public function delete() {
         Talleres::find($this->taller_id)->delete();
-        session()->flash('message', 'Taller Grupal eliminado correctamente.');
         $this->confirmacion = false;
+        $this->message('Taller grupal eliminado correctamente');
     }
 
 }

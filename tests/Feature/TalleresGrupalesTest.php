@@ -28,7 +28,7 @@ class TalleresGrupalesTest extends TestCase
             ->set('nombre', $taller->nombre)
             ->set('descripcion', $taller->descripcion? : '')
             ->call('store')
-            ->assertSee('Taller Grupal Guardado correctamente');
+            ->assertSee('Taller grupal guardado correctamente');    
 
         $this->assertTrue(Talleres::where('nombre', $taller->nombre)->exists());
     }
@@ -62,7 +62,7 @@ class TalleresGrupalesTest extends TestCase
             ->set('taller_id', $taller->id)
             ->set('nombre', 'nombre actualizado')
             ->call('update')
-            ->assertSee('Taller Grupal Actualizado correctamente');
+            ->assertSee('Taller grupal actualizado correctamente');
 
         $this->assertTrue(Talleres::where('nombre','nombre actualizado')->exists());
     }
@@ -95,7 +95,7 @@ class TalleresGrupalesTest extends TestCase
         Livewire::test(TalleresGrupales::class)
                 ->set('taller_id', $taller->id)
                 ->call('delete')
-                ->assertSee('Taller Grupal eliminado correctamente.')
+                ->assertSee('Taller grupal eliminado correctamente')
                 ->assertSet('confirmacion',false);
         $this->assertTrue(!Talleres::where('id', $taller->id)->exists());
     }
