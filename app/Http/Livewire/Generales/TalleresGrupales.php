@@ -28,6 +28,7 @@ class TalleresGrupales extends Component
     public function resetInputFields() {
         $this->nombre = '';
         $this->descripcion = '';
+        $this->updateMode = false;
     }
 
     public function cancelar() {
