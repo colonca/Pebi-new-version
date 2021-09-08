@@ -2,9 +2,9 @@ name: PEBI TEST
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
   pull_request:
-   branches: [master]
+    branches: [master]
    
 jobs:
   tests:
