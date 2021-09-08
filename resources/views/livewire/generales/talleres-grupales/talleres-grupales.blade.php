@@ -1,6 +1,7 @@
 <div>
+<x-flash-message />
 <div class="flex">
-     <div class="px-2 py-5 flex-grow">
+     <div class="py-5 flex-grow">
 	<div class='overflow-x-auto shadow'>
 		<table class='mx-auto w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden'>
 			<thead class="bg-gray-800">
@@ -50,11 +51,6 @@
 	<div class="shadow rounded">
 	   <div class="p-4">
 		<x-jet-validation-errors class="mb-4" />
-		@if (session('message'))
-			<div class="mb-4 font-medium text-sm text-green-600">
-				{{ session('message') }}
-			</div>
-		@endif   
 		@if($updateMode)
 		  @include('livewire.generales.talleres-grupales.update')
 		@else
