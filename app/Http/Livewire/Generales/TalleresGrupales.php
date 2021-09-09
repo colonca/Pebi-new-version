@@ -21,7 +21,7 @@ class TalleresGrupales extends Component
     public function render()
     {   
         return view('livewire.generales.talleres-grupales.talleres-grupales',[
-            'talleres' => Talleres::paginate(6)
+            'talleres' => Talleres::paginate(10)
         ]);
     }
 
