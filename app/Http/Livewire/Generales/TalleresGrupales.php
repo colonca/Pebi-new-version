@@ -21,13 +21,14 @@ class TalleresGrupales extends Component
     public function render()
     {   
         return view('livewire.generales.talleres-grupales.talleres-grupales',[
-            'talleres' => Talleres::paginate(6)
+            'talleres' => Talleres::paginate(10)
         ]);
     }
 
     public function resetInputFields() {
         $this->nombre = '';
         $this->descripcion = '';
+        $this->updateMode = false;
     }
 
     public function cancelar() {
@@ -79,6 +80,7 @@ class TalleresGrupales extends Component
     public function delete() {
         Talleres::find($this->taller_id)->delete();
         $this->confirmacion = false;
+        $this->resetInputFields();
         $this->message('Taller grupal eliminado correctamente');
     }
 
