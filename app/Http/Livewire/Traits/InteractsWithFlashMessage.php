@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Support\Concerns;
+namespace App\Http\Livewire\Traits;
 
 trait InteractsWithFlashMessage {
 

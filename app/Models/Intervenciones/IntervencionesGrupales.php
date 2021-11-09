@@ -15,22 +15,36 @@ class IntervencionesGrupales extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['id','programa_id','asignatura_id','taller_id','fecha','created_at','updated_at'];
+    protected $fillable = ['id', 'programa_id', 'asignatura_id', 'taller_id', 'fecha', 'created_at', 'updated_at'];
 
-    public function estudiantes() {
-        return $this->belongsToMany(Estudiantes::class,'grupales_estudiante','grupal_id','estudiante_id');
+    public static function validationRules() : array{
+        return [
+            'id' => 'numeric|nullable',
+            'programa_id' =>  'required',
+            'asignatura_id' => 'required',
+            'taller_id' => 'required',
+            'fecha' => 'required',
+            'estudiantes' => 'required|array'
+        ];
     }
 
-    public function taller(){
-        return $this->belongsTo(TalleresGrupales::class,'taller_id','id');
+    public function estudiantes()
+    {
+        return $this->belongsToMany(Estudiantes::class, 'grupales_estudiante', 'grupal_id', 'estudiante_id');
     }
 
-    public function asignatura() {
-        return $this->belongsTo(Asignaturas::class);
+    public function taller()
+    {
+        return $this->belongsTo(TalleresGrupales::class, 'taller_id', 'id')->withTrashed();
     }
 
-    public function programa() {
-        return $this->belongsTo(Programas::class);
+    public function asignatura()
+    {
+        return $this->belongsTo(Asignaturas::class)->withTrashed();
     }
 
+    public function programa()
+    {
+        return $this->belongsTo(Programas::class)->withTrashed();
+    }
 }
