@@ -14,6 +14,13 @@ class TalleresGrupales extends Model
 
     protected $fillable = ['nombre', 'descripcion'];
 
+    public function toArray(): array
+    {
+        $array =  parent::toArray();
+        $array['type'] = get_class($this);
+        return $array;
+    }
+
     public function getDescripcionCortaAttribute()
     {
         return Str::limit($this->descripcion, 20);

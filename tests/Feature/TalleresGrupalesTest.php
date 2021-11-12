@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\Components\DeleteModal;
 use App\Http\Livewire\Generales\TalleresGrupales;
 use App\Models\User;
 use App\Models\Generales\TalleresGrupales as Talleres;
@@ -88,9 +89,15 @@ class TalleresGrupalesTest extends TestCase
     public function el_componente_talleres_grupales_muestra_el_modal_para_confirmar_la_eliminacion_del_taller()
     {
         Livewire::actingAs(User::factory()->create());
+        $taller = Talleres::factory()->create();
         Livewire::test(TalleresGrupales::class)
+<<<<<<< HEAD
             ->set('confirmacion', true)
             ->assertSee('Eliminar Taller Grupal');
+=======
+            ->call('delete', $taller->id)
+            ->assertEmitted('showModal');
+>>>>>>> origin/develop
     }
 
 
@@ -99,11 +106,19 @@ class TalleresGrupalesTest extends TestCase
     {
         Livewire::actingAs(User::factory()->create());
         $taller = Talleres::factory()->create();
+<<<<<<< HEAD
         Livewire::test(TalleresGrupales::class)
             ->set('taller_id', $taller->id)
             ->call('delete')
             ->assertSee('Taller grupal eliminado correctamente')
             ->assertSet('confirmacion', false);
         $this->assertTrue(!Talleres::where('id', $taller->id)->exists());
+=======
+        Livewire::test(DeleteModal::class)
+            ->call('open', ['id' => $taller->id, 'className' => get_class($taller)])
+            ->call('delete');
+
+        $this->assertDeleted('talleres_grupales', $taller->toArray());
+>>>>>>> origin/develop
     }
 }

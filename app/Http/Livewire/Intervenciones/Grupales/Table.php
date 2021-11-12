@@ -2,11 +2,8 @@
 
 namespace App\Http\Livewire\Intervenciones\Grupales;
 
-use App\Models\Generales\Asignaturas;
-use App\Models\Generales\Programas;
-use App\Models\Generales\TalleresGrupales;
+use App\Http\Livewire\Traits\InteractsWithModal;
 use App\Models\Intervenciones\IntervencionesGrupales;
-use App\Support\Concerns\InteractsWithFlashMessage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,30 +11,33 @@ class Table extends Component
 {
 
     use WithPagination;
-    use InteractsWithFlashMessage;
+    use InteractsWithModal;
 
-    public bool $confirmacion = false;
     public $intervencion_id;
+
+    public $listeners = ['list:refresh' => 'render'];
 
     public function render()
     {
-        return view('livewire.intervenciones.grupales.table',[
-            'programas' => Programas::all(),
-            'talleres' => TalleresGrupales::all(),
-            'asignaturas' => Asignaturas::all(),
+        return view('livewire.intervenciones.grupales.table', [
             'intervenciones' => IntervencionesGrupales::paginate(8),
         ]);
     }
 
-    public function showModal($id) {
-        $this->intervencion_id = $id;
-        $this->confirmacion = true;
+    public function create()
+    {
+        $this->openModal('forms.intervencion-grupal-form', [], 'w-10/12');
     }
 
-    public function delete() {
-        IntervencionesGrupales::find($this->intervencion_id)->delete();
-        $this->confirmacion = false;
-        $this->message('Intervencion grupal eliminada correctamente');
+    public function edit($id)
+    {
+        $intervencion = IntervencionesGrupales::find($id);
+        $this->openModal('forms.intervencion-grupal-form', $intervencion->load('estudiantes'), 'w-10/12');
     }
 
+    public function delete($id)
+    {
+        $intervencion = IntervencionesGrupales::find($id);
+        $this->deleteModal($intervencion);
+    }
 }

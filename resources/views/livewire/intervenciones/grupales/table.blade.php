@@ -37,13 +37,6 @@
                         </button>
                     </x-slot>
                     <x-slot name="content">
-                        <div class="overflow-y-auto h-64">
-                            @foreach ($programas as $programa)
-                            <div class="block px-4 py-2 text-xs text-gray-500 cursor-pointer hover:text-gray-800">
-                                {{ __($programa->nombre) }}
-                            </div>
-                            @endforeach
-                        </div>
                     </x-slot>
                 </x-jet-dropdown>
                 <x-jet-dropdown width="48">
@@ -63,13 +56,6 @@
                         </button>
                     </x-slot>
                     <x-slot name="content">
-                        <div class="overflow-y-auto h-64">
-                            @foreach ($talleres as $taller)
-                            <div class="block px-4 py-2 text-xs text-gray-500 cursor-pointer hover:text-gray-800">
-                                {{ __($taller->nombre) }}
-                            </div>
-                            @endforeach
-                        </div>
                     </x-slot>
                 </x-jet-dropdown>
                 <x-jet-dropdown>
@@ -112,14 +98,14 @@
                     </span>
                     <span class="ml-2">Exportar</span>
                 </button>
-                <a href="" class="bg-green-200 flex px-2 py-1 rounded ml-2">
+                <button wire:click.prevent="create" class="bg-green-200 flex px-2 py-1 rounded ml-2">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                         </svg>
                     </span>
                     <span class="ml-2">Nueva Intervención Grupal</span>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -133,7 +119,7 @@
                             <x-table.td>{{date('M j, Y',strtotime($intervencion->fecha))}}</x-table-td>
                                 <td class="text-left">
                                     <x-table.action type="edit" wire:click="edit({{$intervencion->id}})" />
-                                    <x-table.action type="delete" wire:click="showModal({{$intervencion->id}})" />
+                                    <x-table.action type="delete" wire:click="delete({{$intervencion->id}})" />
                                 </td>
         </tr>
         @endforeach
@@ -141,25 +127,4 @@
     <div class="my-2">
         {{$intervenciones->links()}}
     </div>
-    @if($confirmacion)
-    <x-jet-confirmation-modal wire:model="confirmacion">
-        <x-slot name="title">
-            Eliminar Intervención Grupal
-        </x-slot>
-
-        <x-slot name="content">
-            Estas Segur@ que quieres eliminar esta Intervencion Grupal? Una vez eliminada, Todos los registros y datos seran permanentemente eliminados.
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('confirmacion')" wire:loading.attr="disabled">
-                Cancelar
-            </x-jet-secondary-button>
-
-            <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
-                Eliminar
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-confirmation-modal>
-    @endif
 </div>
