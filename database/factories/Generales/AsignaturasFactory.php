@@ -25,7 +25,7 @@ class AsignaturasFactory extends Factory
         return [
             'codigo' => $this->faker->postcode,
             'nombre' => $this->faker->firstName,
-            'creditos' => $this->faker->numberBetween(1,4),
+            'creditos' => $this->faker->numberBetween(1, 4),
             'programa_id' => Programas::all()->random()->id,
         ];
     }

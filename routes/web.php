@@ -21,17 +21,16 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //pagina principal despues de que el usuario se haya logueado
-    Route::view('/dashboard','dashboard');
+    Route::view('/dashboard', 'dashboard');
 
     //modulo de generales
-    Route::prefix('generales')->group(function() {
-      Route::view('/talleres-grupales', 'pages.generales.talleres_grupales.index')->name('generales.talleres_grupales');
+    Route::prefix('generales')->group(function () {
+        Route::view('/talleres-grupales', 'pages.generales.talleres_grupales.index')->name('generales.talleres_grupales');
+        Route::view('/campañas', 'pages.generales.campanhas.index')->name('generales.campanhas');
     });
 
     //modulo de intervenciones
-    Route::prefix('intervenciones')->group(function() {
-      Route::view('/grupales/index','pages.intervenciones.grupales.index');
+    Route::prefix('intervenciones')->group(function () {
+        Route::view('/grupales/index', 'pages.intervenciones.grupales.index');
     });
-
-
 });

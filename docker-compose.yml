@@ -5,7 +5,7 @@ services:
     container_name: pebi-nginx
     restart: unless-stopped
     ports:
-      - 80:80
+      - 8000:80
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
@@ -19,7 +19,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: pebi
-    container_name: pebi-app
+    container_name: app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:

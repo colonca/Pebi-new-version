@@ -12,9 +12,15 @@ class TalleresGrupales extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['nombre','descripcion'];
+    protected $fillable = ['nombre', 'descripcion'];
 
-    public function getDescripcionCortaAttribute() {
+    public function getDescripcionCortaAttribute()
+    {
         return Str::limit($this->descripcion, 20);
+    }
+
+    public function campanha()
+    {
+        return $this->belongsTo(Campanhas::class);
     }
 }
