@@ -17,7 +17,8 @@ class IntervencionesGrupales extends Model
 
     protected $fillable = ['id', 'programa_id', 'asignatura_id', 'taller_id', 'fecha', 'created_at', 'updated_at'];
 
-    public static function validationRules() : array{
+    public static function validationRules(): array
+    {
         return [
             'id' => 'numeric|nullable',
             'programa_id' =>  'required',

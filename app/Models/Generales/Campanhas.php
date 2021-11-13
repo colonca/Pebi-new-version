@@ -17,6 +17,15 @@ class Campanhas extends Model
         return  $this->hasMany(TalleresGrupales::class);
     }
 
+    public static function validationRules(): array
+    {
+        return [
+            'id' => 'numeric|nullable',
+            'nombre' => 'required',
+            'poblacion' => 'required'
+        ];
+    }
+
     public function getPoblacionAttribute($value)
     {
         return Str::limit($value, 30);

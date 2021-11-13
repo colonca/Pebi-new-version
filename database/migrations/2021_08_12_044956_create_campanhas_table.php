@@ -15,7 +15,7 @@ class CreateCampanhasTable extends Migration
     {
         Schema::create('campanhas', function (Blueprint $table) {
             $table->id();
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
             $table->string('nombre');
             $table->string('poblacion');
             $table->softDeletes();
