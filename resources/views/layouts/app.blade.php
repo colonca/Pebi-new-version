@@ -32,6 +32,8 @@
             </div>
         </div>
     </div>
+    <livewire:components.modal />
+    <livewire:components.delete-modal />
     @livewireScripts
 </body>
 
