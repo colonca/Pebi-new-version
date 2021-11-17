@@ -21,6 +21,8 @@ class CreateIntervencionesGrupalesTable extends Migration
             $table->foreign('asignatura_id')->references('id')->on('asignaturas')->onDelete('CASCADE');
             $table->foreignId('taller_id');
             $table->foreign('taller_id')->references('id')->on('talleres_grupales')->cascadeOnDelete();
+            $table->foreignId('campanha_id');
+            $table->foreign('campanha_id')->references('id')->on('campanhas')->cascadeOnDelete();
             $table->date('fecha');
             $table->softDeletes();
             $table->timestamps();
@@ -32,7 +34,7 @@ class CreateIntervencionesGrupalesTable extends Migration
             $table->foreign('grupal_id')->references('id')->on('intervenciones_grupales')->onDelete('CASCADE');
             $table->foreignId('estudiante_id')->comment('Campo foraneo de la tabla estudiantes');
             $table->foreign('estudiante_id')->references('id')->on('estudiantes')->onDelete('CASCADE');
-            $table->timestamps(); 
+            $table->timestamps();
          });
 
     }

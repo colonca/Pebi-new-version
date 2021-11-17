@@ -12,13 +12,23 @@ class TalleresGrupales extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['nombre', 'descripcion'];
+    protected $fillable = ['nombre', 'descripcion', 'campanha_id'];
 
     public function toArray(): array
     {
         $array =  parent::toArray();
         $array['type'] = get_class($this);
         return $array;
+    }
+
+    public static function validationRules(): array
+    {
+        return [
+            'id' => 'numeric|nullable',
+            'nombre' => 'required',
+            'descripcion' => 'nullable',
+            'campanha_id' => 'numeric|required'
+        ];
     }
 
     public function getDescripcionCortaAttribute()

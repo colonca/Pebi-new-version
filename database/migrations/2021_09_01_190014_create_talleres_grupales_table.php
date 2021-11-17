@@ -17,7 +17,8 @@ class CreateTalleresGrupalesTable extends Migration
             $table->id();
             $table->string('nombre')->comment('este es el nombre del taller');
             $table->string('descripcion')->nullable()->comment('breve descripción del taller');
-            $table->foreignId('campanha');
+            $table->foreignId('campanha_id');
+            $table->foreign('campanha_id')->references('id')->on('campanhas')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -26,13 +26,13 @@ class Table extends Component
 
     public function create()
     {
-        $this->openModal('forms.intervencion-grupal-form', [], 'w-10/12');
+        $this->openModal('forms.intervencion-grupal-form', [], 'w-4/5');
     }
 
     public function edit($id)
     {
         $intervencion = IntervencionesGrupales::find($id);
-        $this->openModal('forms.intervencion-grupal-form', $intervencion->load('estudiantes'), 'w-10/12');
+        $this->openModal('forms.intervencion-grupal-form', $intervencion->load('estudiantes'), 'w-4/5');
     }
 
     public function delete($id)

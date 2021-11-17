@@ -25,8 +25,19 @@ class TalleresGrupales extends Component
     public function render()
     {
         return view('livewire.generales.talleres-grupales.talleres-grupales', [
-            'talleres' => Talleres::paginate(10)
+            'talleres' => Talleres::with('campanha')->paginate(8)
         ]);
+    }
+
+    public function create()
+    {
+        $this->openModal('forms.taller-grupal-form', [], 'w-2/3');
+    }
+
+    public function edit($id)
+    {
+        $taller = Talleres::findOrFail($id);
+        $this->openModal('forms.taller-grupal-form', $taller->load('campanha'), 'w-2/3');
     }
 
     public function resetInputFields()
@@ -42,49 +53,9 @@ class TalleresGrupales extends Component
         $this->updateMode = false;
     }
 
-    public function store(): void
-    {
-
-        $this->validate([
-            'nombre' => 'required'
-        ]);
-
-        Talleres::create([
-            'nombre' => $this->nombre,
-            'descripcion' => $this->descripcion
-        ]);
-        $this->resetInputFields();
-        $this->message('Taller grupal guardado correctamente');
-    }
-
-    public function edit($id)
-    {
-        $taller = Talleres::findOrFail($id);
-        $this->taller_id =  $taller->id;
-        $this->nombre = $taller->nombre;
-        $this->descripcion = $taller->descripcion ?? '';
-        $this->updateMode = true;
-    }
-
-    public function update()
-    {
-        $this->validate([
-            'nombre' => 'required'
-        ]);
-        $taller = Talleres::find($this->taller_id);
-        $taller->update([
-            'nombre' => $this->nombre,
-            'descripcion' => $this->descripcion
-        ]);
-        $this->updateMode = false;
-        $this->message('Taller grupal actualizado correctamente');
-        $this->resetInputFields();
-    }
-
     public function delete($id)
     {
-        $this->resetInputFields();
-        $taller = Talleres::find($id);
+        $taller = Talleres::findOrFail($id);
         $this->deleteModal($taller);
     }
 }

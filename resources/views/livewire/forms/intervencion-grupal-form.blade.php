@@ -2,17 +2,37 @@
     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         <div class="sm:flex sm:items-start">
             <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                <h3 class="text-lg leading-6 font-semibold text-gray-900" id="modal-title">
-                    {{$title}}
-                </h3>
+
                 <div class="form my-2">
                     <form class="my-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg leading-6 font-semibold text-gray-900" id="modal-title">
+                                {{$title}}
+                            </h3>
+                            <div class="flex items-center">
+                                <div class="w-1/2 mr-2">
+                                        <x-jet-label for="nombre" value="{{ __('Tallerista') }}" />
+                                        <div class="mt-2">
+                                            <select name="programa" wire:model="form.programa_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                                <option value="">Seleccione un Programa</option>
+                                                @foreach ($programas as $programa)
+                                                <option value='{{$programa->id}}'>{{$programa->nombre}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                </div>
+                                <div>
+                                    <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
+                                    <x-jet-input type="date" id="fecha" class="block mt-1 w-full" wire:model="form.fecha" placeholder="fecha" autofocus />
+                                </div>
+                            </div>
+                        </div>
                         <x-jet-validation-errors class="mb-4" />
-                        <div class="flex items-center justify-between">
-                            <div>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="w-1/2 mr-2">
                                 <x-jet-label for="nombre" value="{{ __('Programa') }}" />
                                 <div class="mt-2">
-                                    <select name="country" wire:model="form.programa_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                    <select name="programa" wire:model="form.programa_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                         <option value="">Seleccione un Programa</option>
                                         @foreach ($programas as $programa)
                                         <option value='{{$programa->id}}'>{{$programa->nombre}}</option>
@@ -20,10 +40,10 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="">
+                            <div class="w-1/2">
                                 <x-jet-label for="nombre" value="{{ __('Asignatura') }}" />
                                 <div class="mt-2">
-                                    <select name="asignatura" wire:model="form.asignatura_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                    <select name="asignatura" wire:model="form.asignatura_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                         <option value="">Seleccione una Asignatura</option>
                                         @foreach ($asignaturas as $asignatura)
                                         <option value='{{$asignatura->id}}'>{{$asignatura->nombre}}</option>
@@ -31,21 +51,31 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="">
-                                <x-jet-label for="taller" value="{{ __('Taller') }}" />
+                       </div>
+                        <div class="flex items-center justify-center mt-2">
+                            <div class="w-1/2 mr-2">
+                                <x-jet-label for="campanha" value="{{ __('Campaña') }}" />
                                 <div class="mt-2">
-                                    <select id="taller" name="taller" wire:model="form.taller_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                                        @foreach ($talleres as $taller)
-                                        <option value='{{$taller->id}}'>{{$taller->nombre}}</option>
+                                    <select id="campanha" name="taller" wire:model="form.campanha_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                        <option value="">Seleccione campaña</option>
+                                        @foreach ($campanhas as $campanha)
+                                            <option value='{{$campanha->id}}'>{{$campanha->nombre}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="">
-                                <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
-                                <x-jet-input type="date" id="fecha" class="block mt-1 w-full" wire:model="form.fecha" placeholder="fecha" autofocus />
+                            <div class="w-1/2 mr-2">
+                                <x-jet-label for="taller" value="{{ __('Taller') }}" />
+                                <div class="mt-2">
+                                    <select id="taller" name="taller" wire:model="form.taller_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                        <option value="">Seleccione taller</option>
+                                        @foreach ($talleres as $taller)
+                                            <option value='{{$taller->id}}'>{{$taller->nombre}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                       </div>
                     </form>
                 </div>
                 <div class="">

@@ -8,6 +8,7 @@ use App\Models\Generales\Asignaturas;
 use App\Models\Generales\Estudiantes;
 use App\Models\Generales\Programas;
 use App\Models\Generales\TalleresGrupales;
+use App\Models\Generales\Campanhas;
 use App\Models\Intervenciones\IntervencionesGrupales;
 use Illuminate\Support\Arr;
 
@@ -21,6 +22,7 @@ class IntervencionGrupalForm extends BaseForm
         'id' => null,
         'programa_id' => null,
         'asignatura_id' => null,
+        'campanha_id' => null,
         'taller_id' => null,
         'type' => IntervencionesGrupales::class,
         'fecha' => '',
@@ -28,6 +30,7 @@ class IntervencionGrupalForm extends BaseForm
     ];
 
     public $asignaturas = [];
+    public $talleres = [];
     public string $query = '';
 
     public function rules()
@@ -89,6 +92,7 @@ class IntervencionGrupalForm extends BaseForm
         }, $data['estudiantes']);
         $model->estudiantes()->sync($estudiantes);
         $this->message('Intervención Grupal Guardada Correctamente');
+        $this->emit('list:refresh');
         $this->closeModal();
     }
 
@@ -98,9 +102,13 @@ class IntervencionGrupalForm extends BaseForm
             $this->asignaturas = Asignaturas::where('programa_id', $this->form['programa_id'])->get();
         }
 
+        if(!empty($this->form['campanha_id'])){
+           $this->talleres = TalleresGrupales::where('campanha_id',$this->form['campanha_id'])->get();
+        }
+
         return view('livewire.forms.intervencion-grupal-form', [
             'programas' => Programas::orderBy('nombre')->get(),
-            'talleres' => TalleresGrupales::orderBy('nombre')->get(),
+            'campanhas' => Campanhas::orderBy('nombre')->get(),
         ]);
     }
 }

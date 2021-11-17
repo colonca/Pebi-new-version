@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-  <x-breadcrumbs :items="[ 
+<x-breadcrumbs :items="[
       ['title' => 'Inicio', 'url' => 'dashboard'],
-      ['title' => 'Intervenciones Grupales','url' => ''] 
-   ]"/>
-
-   <livewire:intervenciones.grupales.table />
+      ['title' => 'Intervenciones Grupales','url' => '']
+   ]" />
+<div class="w-4/5"></div>
+<livewire:intervenciones.grupales.table />
 @endsection

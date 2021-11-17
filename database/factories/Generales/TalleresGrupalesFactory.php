@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Generales;
 
+use App\Models\Generales\Campanhas;
 use App\Models\Generales\TalleresGrupales;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,8 +22,10 @@ class TalleresGrupalesFactory extends Factory
      */
     public function definition()
     {
+        $campanhas = Campanhas::all();
         return [
             'nombre' =>  $this->faker->name(),
+            'campanha_id' => $campanhas[rand(0, $campanhas->count() - 1)]
         ];
     }
 }

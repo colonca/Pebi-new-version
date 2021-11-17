@@ -15,7 +15,7 @@ class IntervencionesGrupales extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['id', 'programa_id', 'asignatura_id', 'taller_id', 'fecha', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'programa_id', 'asignatura_id', 'taller_id','campanha_id', 'fecha', 'created_at', 'updated_at'];
 
     public static function validationRules(): array
     {
@@ -25,7 +25,8 @@ class IntervencionesGrupales extends Model
             'asignatura_id' => 'required',
             'taller_id' => 'required',
             'fecha' => 'required',
-            'estudiantes' => 'required|array'
+            'estudiantes' => 'required|array',
+            'campanha_id' => 'required|numeric'
         ];
     }
 

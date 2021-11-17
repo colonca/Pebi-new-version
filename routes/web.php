@@ -25,8 +25,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //modulo de generales
     Route::prefix('generales')->group(function () {
-        Route::view('/talleres-grupales', 'pages.generales.talleres_grupales.index')->name('generales.talleres_grupales');
+        Route::view('/talleristas', 'pages.generales.talleristas.index')->name('generales.talleristas');
         Route::view('/campañas', 'pages.generales.campanhas.index')->name('generales.campanhas');
+        Route::view('/talleres-grupales', 'pages.generales.talleres_grupales.index')->name('generales.talleres_grupales');
     });
 
     //modulo de intervenciones
