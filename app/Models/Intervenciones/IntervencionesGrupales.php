@@ -15,7 +15,7 @@ class IntervencionesGrupales extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['id', 'programa_id', 'asignatura_id', 'taller_id','campanha_id', 'fecha', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'programa_id', 'asignatura_id', 'taller_id', 'tallerista_id', 'campanha_id', 'fecha', 'created_at', 'updated_at'];
 
     public static function validationRules(): array
     {
@@ -25,9 +25,15 @@ class IntervencionesGrupales extends Model
             'asignatura_id' => 'required',
             'taller_id' => 'required',
             'fecha' => 'required',
-            'estudiantes' => 'required|array',
-            'campanha_id' => 'required|numeric'
+            'estudiantes' => 'array',
+            'campanha_id' => 'required|numeric',
+            'tallerista_id' => 'numeric|required'
         ];
+    }
+
+    public function getFechaAttribute($value)
+    {
+        return date('Y-m-d\TH:i', strtotime($value));
     }
 
     public function estudiantes()

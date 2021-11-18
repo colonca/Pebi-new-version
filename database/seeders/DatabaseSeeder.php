@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TalleresGrupalesSeeder::class);
         $this->call(ProgramasSeeder::class);
         $this->call(AsignaturasSeeder::class);
+        $this->call(TalleristasSeeder::class);
         $this->call(IntervencionesGrupalesSeeder::class);
     }
 }

@@ -11,8 +11,20 @@
         </button>
     </div>
     <div class="py-5 flex-grow bg-white">
-        <x-table.table :header="['Nombre','Campanha','']">
-
+        <x-table.table :header="['Identificación','Nombre','Correo','Tipo', 'Horas Semanales','']">
+            @foreach($talleristas as $tallerista)
+            <tr class="text-gray-500">
+                <x-table.td>{{$tallerista->identificacion}}</x-table.td>
+                <x-table.td>{{$tallerista->nombres}}</x-table.td>
+                <x-table.td>{{$tallerista->correo_institucional}}</x-table.td>
+                <x-table.td>{{$tallerista->tipo}}</x-table.td>
+                <x-table.td>{{$tallerista->numero_horas_semanales}}</x-table.td>
+                <td class="text-left">
+                    <x-table.action type="edit" wire:click="edit({{$tallerista->id}})" />
+                    <x-table.action type="delete" wire:click="delete({{$tallerista->id}})" />
+                </td>
+            </tr>
+            @endforeach
         </x-table.table>
     </div>
 </div>

@@ -3,7 +3,7 @@
          <img class="w-4/5" src="http://pebi.nikorriendo.com/public/images/logo.png" alt="logo PEBI">
      </div>
      <div class="pt-12  flex flex-col items-start flex-grow overflow-y-auto">
-         <x-sidebar.link title="Calendario" :link="url('/calendar')" :active="request()->is('calendar*')">
+         <x-sidebar.link title="Calendario" :link="url('/calendario')" :active="request()->is('calendario*')">
              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
              </svg>

@@ -1305,6 +1305,9 @@ select {
 .w-1\/2 {
 	width: 50%;
 }
+.w-9\/12 {
+	width: 75%;
+}
 .w-4\/5 {
 	width: 80%;
 }
@@ -1784,6 +1787,9 @@ select {
 }
 .font-semibold {
 	font-weight: 600;
+}
+.font-bold {
+	font-weight: 700;
 }
 .uppercase {
 	text-transform: uppercase;

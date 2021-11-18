@@ -52,4 +52,9 @@ class TallerGrupalForm extends BaseForm
         $this->emit('list:refresh');
         $this->closeModal();
     }
+
+    public function cancelar()
+    {
+        $this->closeModal();
+    }
 }

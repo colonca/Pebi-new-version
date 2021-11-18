@@ -47,6 +47,11 @@ class CampanhaForm extends  BaseForm
         $this->closeModal();
     }
 
+    public function cancelar()
+    {
+        $this->closeModal();
+    }
+
     public function render()
     {
         return view('livewire.forms.campanha-form');

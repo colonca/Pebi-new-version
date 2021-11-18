@@ -21,7 +21,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //pagina principal despues de que el usuario se haya logueado
-    Route::view('/dashboard', 'dashboard');
+    Route::view('/dashboard', 'pages/dashboard');
+    Route::view('/calendario', 'pages/calendario');
 
     //modulo de generales
     Route::prefix('generales')->group(function () {

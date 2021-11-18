@@ -11,19 +11,19 @@
                             </h3>
                             <div class="flex items-center">
                                 <div class="w-1/2 mr-2">
-                                        <x-jet-label for="nombre" value="{{ __('Tallerista') }}" />
-                                        <div class="mt-2">
-                                            <select name="programa" wire:model="form.programa_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                                                <option value="">Seleccione un Programa</option>
-                                                @foreach ($programas as $programa)
-                                                <option value='{{$programa->id}}'>{{$programa->nombre}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <x-jet-label for="nombre" value="{{ __('Tallerista') }}" />
+                                    <div class="mt-2">
+                                        <select name="programa" wire:model="form.tallerista_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                            <option value="">Seleccione un Tallerista</option>
+                                            @foreach ($talleristas as $tallerista)
+                                            <option value='{{$tallerista->id}}'>{{$tallerista->nombres}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div>
                                     <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
-                                    <x-jet-input type="date" id="fecha" class="block mt-1 w-full" wire:model="form.fecha" placeholder="fecha" autofocus />
+                                    <x-jet-input type="datetime-local" class="block mt-1 w-full" wire:model="form.fecha" placeholder="fecha" />
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                     </select>
                                 </div>
                             </div>
-                       </div>
+                        </div>
                         <div class="flex items-center justify-center mt-2">
                             <div class="w-1/2 mr-2">
                                 <x-jet-label for="campanha" value="{{ __('Campaña') }}" />
@@ -59,7 +59,7 @@
                                     <select id="campanha" name="taller" wire:model="form.campanha_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                         <option value="">Seleccione campaña</option>
                                         @foreach ($campanhas as $campanha)
-                                            <option value='{{$campanha->id}}'>{{$campanha->nombre}}</option>
+                                        <option value='{{$campanha->id}}'>{{$campanha->nombre}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -70,12 +70,12 @@
                                     <select id="taller" name="taller" wire:model="form.taller_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                         <option value="">Seleccione taller</option>
                                         @foreach ($talleres as $taller)
-                                            <option value='{{$taller->id}}'>{{$taller->nombre}}</option>
+                                        <option value='{{$taller->id}}'>{{$taller->nombre}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                       </div>
+                        </div>
                     </form>
                 </div>
                 <div class="">

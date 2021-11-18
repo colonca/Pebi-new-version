@@ -9,6 +9,7 @@ use App\Models\Generales\Estudiantes;
 use App\Models\Generales\Programas;
 use App\Models\Generales\TalleresGrupales;
 use App\Models\Generales\Campanhas;
+use App\Models\Generales\Talleristas;
 use App\Models\Intervenciones\IntervencionesGrupales;
 use Illuminate\Support\Arr;
 
@@ -24,8 +25,8 @@ class IntervencionGrupalForm extends BaseForm
         'asignatura_id' => null,
         'campanha_id' => null,
         'taller_id' => null,
-        'type' => IntervencionesGrupales::class,
-        'fecha' => '',
+        'tallerista_id' => null,
+        'fecha' => null,
         'estudiantes' => []
     ];
 
@@ -102,13 +103,14 @@ class IntervencionGrupalForm extends BaseForm
             $this->asignaturas = Asignaturas::where('programa_id', $this->form['programa_id'])->get();
         }
 
-        if(!empty($this->form['campanha_id'])){
-           $this->talleres = TalleresGrupales::where('campanha_id',$this->form['campanha_id'])->get();
+        if (!empty($this->form['campanha_id'])) {
+            $this->talleres = TalleresGrupales::where('campanha_id', $this->form['campanha_id'])->get();
         }
 
         return view('livewire.forms.intervencion-grupal-form', [
             'programas' => Programas::orderBy('nombre')->get(),
             'campanhas' => Campanhas::orderBy('nombre')->get(),
+            'talleristas' => Talleristas::orderBy('nombres')->get(),
         ]);
     }
 }
