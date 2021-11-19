@@ -31,7 +31,8 @@
         });
         calendar.render();
         Livewire.on(`refreshCalendar`, () => {
-            calendar.refetchEvents()
+            location.reload();
+            //calendar.refetchEvents()
         });
     });
 </script>

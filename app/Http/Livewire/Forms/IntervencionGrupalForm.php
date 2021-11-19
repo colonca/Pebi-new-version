@@ -12,7 +12,9 @@ use App\Models\Generales\TalleresGrupales;
 use App\Models\Generales\Campanhas;
 use App\Models\Generales\Talleristas;
 use App\Models\Intervenciones\IntervencionesGrupales;
+use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class IntervencionGrupalForm extends BaseForm
 {
@@ -90,39 +92,46 @@ class IntervencionGrupalForm extends BaseForm
     public function submit(): void
     {
         $data = $this->validate()['form'];
-        $model = IntervencionesGrupales::updateOrCreate(
-            ['id' => $data['id']],
-            $data
-        );
-        $model->save();
-        $estudiantes = array_map(function ($item) {
-            return $item['id'];
-        }, $data['estudiantes']);
-        $model->estudiantes()->sync($estudiantes);
-        $this->message('Intervención Grupal Guardada Correctamente');
-        //agendar o actualizar evento
-        $event = Event::where('description', 'like', '%' . $model->id . '%')->first();
-        $event = $event ? $event->id : null;
-        $event = Event::updateOrCreate(
-            ['id' => $event],
-            [
-                'title' => 'Intervencion Grupal',
-                'description' => json_encode([
-                    'id' => $model->id,
-                    'asignatura' => $model->asignatura->nombre,
-                    'programa' => $model->programa->nombre,
-                    'taller' => $model->taller->nombre,
-                    'tallerista' => $model->tallerista->nombres,
-                    'lugar' => $model->lugar,
-                    'profesor' => $model->profesor,
-                    'celular_profesor' => $model->celular_profesor
+        DB::beginTransaction();
+        try {
+            $model = IntervencionesGrupales::updateOrCreate(
+                ['id' => $data['id']],
+                $data
+            );
+            $model->save();
+            $estudiantes = array_map(function ($item) {
+                return $item['id'];
+            }, $data['estudiantes']);
+            $model->estudiantes()->sync($estudiantes);
+            $this->message('Intervención Grupal Guardada Correctamente');
+            //agendar o actualizar evento
+            $event = Event::where('description', 'like', '%' . $model->id . '%')->first();
+            $event = $event ? $event->id : null;
+            $event = Event::updateOrCreate(
+                ['id' => $event],
+                [
+                    'title' => 'Intervencion Grupal',
+                    'description' => json_encode([
+                        'id' => $model->id,
+                        'asignatura' => $model->asignatura->nombre,
+                        'programa' => $model->programa->nombre,
+                        'taller' => $model->taller->nombre,
+                        'tallerista' => $model->tallerista->nombres,
+                        'lugar' => $model->lugar,
+                        'profesor' => $model->profesor,
+                        'celular_profesor' => $model->celular_profesor
 
-                ]),
-                'type' => 'Intervencion Grupal',
-                'start' => $data['fecha']
-            ]
-        );
-        $event->save();
+                    ]),
+                    'type' => 'Intervencion Grupal',
+                    'start' => $data['fecha']
+                ]
+            );
+            $event->save();
+            DB::commit();
+        } catch (Exception $e) {
+            $this->message('ha ocurrido un error, por favor intentalo mas tarder');
+            DB::rollBack();
+        }
         $this->emit('list:refresh');
         $this->closeModal();
     }

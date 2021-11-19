@@ -18,12 +18,11 @@ class IntervencionesGrupalesFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (IntervencionesGrupales $intervencion) {
-            $event = new Event([
+            /*$event = new Event([
                 'title' =>  'Intervencion Grupal',
                 'description' => json_encode([
                     'id' => $intervencion->id,
                     'taller' => $intervencion->taller->nombre,
-                    'programa' => $intervencion->programa->nombre,
                     'asignatura' => $intervencion->asignatura->nombre,
                     'tallerista' => $intervencion->tallerista->nombre,
                     'lugar' => $intervencion->lugar,
@@ -33,7 +32,7 @@ class IntervencionesGrupalesFactory extends Factory
                 'type' => 'Intervencion Grupal',
                 'start' => $intervencion->fecha,
             ]);
-            $event->save();
+            $event->save();*/
         });
     }
 

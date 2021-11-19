@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Intervenciones\Grupales;
 
 use App\Http\Livewire\Traits\InteractsWithModal;
+use App\Models\Calendario\Event;
 use App\Models\Intervenciones\IntervencionesGrupales;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -38,6 +39,8 @@ class Table extends Component
     public function delete($id)
     {
         $intervencion = IntervencionesGrupales::find($id);
+        $event = Event::where('description', 'like', '%' . $intervencion->id . '%')->first();
+        if ($event) $event->delete();
         $this->deleteModal($intervencion);
     }
 }
