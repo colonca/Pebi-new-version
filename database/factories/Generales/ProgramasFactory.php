@@ -22,8 +22,9 @@ class ProgramasFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->name(),
-            'facultad' => $this->faker->name()
+            'codigo' => $this->faker->countryCode,
+            'nombre' => $this->faker->name,
+            'facultad' => $this->faker->name
         ];
     }
 }

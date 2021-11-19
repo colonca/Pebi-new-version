@@ -40,7 +40,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="w-1/2">
+                            <div class="w-1/2 mr-2">
                                 <x-jet-label for="nombre" value="{{ __('Asignatura') }}" />
                                 <div class="mt-2">
                                     <select name="asignatura" wire:model="form.asignatura_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
@@ -50,6 +50,14 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="mr-2">
+                                <x-jet-label for="fecha" value="{{ __('Profesor') }}" />
+                                <x-jet-input type="text" class="block mt-1 w-full" wire:model="form.profesor" placeholder="nombre" />
+                            </div>
+                            <div>
+                                <x-jet-label for="fecha" value="{{ __('Celular') }}" />
+                                <x-jet-input type="text" class="block mt-1 w-full" wire:model="form.celular_profesor" placeholder="celular del profesor" />
                             </div>
                         </div>
                         <div class="flex items-center justify-center mt-2">
@@ -74,6 +82,10 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div>
+                                <x-jet-label for="fecha" value="{{ __('Lugar') }}" />
+                                <x-jet-input type="text" class="block mt-1 w-full" wire:model="form.lugar" placeholder="lugar" />
                             </div>
                         </div>
                     </form>

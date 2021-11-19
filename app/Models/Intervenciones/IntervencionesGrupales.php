@@ -3,9 +3,11 @@
 namespace App\Models\Intervenciones;
 
 use App\Models\Generales\Asignaturas;
+use App\Models\Generales\Campanhas;
 use App\Models\Generales\Estudiantes;
 use App\Models\Generales\Programas;
 use App\Models\Generales\TalleresGrupales;
+use App\Models\Generales\Talleristas;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,7 +17,10 @@ class IntervencionesGrupales extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['id', 'programa_id', 'asignatura_id', 'taller_id', 'tallerista_id', 'campanha_id', 'fecha', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'id', 'programa_id', 'asignatura_id', 'taller_id', 'tallerista_id',
+        'campanha_id', 'fecha', 'created_at', 'updated_at', 'profesor', 'lugar', 'celular_profesor'
+    ];
 
     public static function validationRules(): array
     {
@@ -27,11 +32,14 @@ class IntervencionesGrupales extends Model
             'fecha' => 'required',
             'estudiantes' => 'array',
             'campanha_id' => 'required|numeric',
-            'tallerista_id' => 'numeric|required'
+            'tallerista_id' => 'numeric|required',
+            'lugar' => 'required',
+            'profesor' => 'required',
+            'celular_profesor' => 'required'
         ];
     }
 
-    public function getFechaAttribute($value)
+    public function getFechaAttribute($value): string
     {
         return date('Y-m-d\TH:i', strtotime($value));
     }
@@ -51,8 +59,18 @@ class IntervencionesGrupales extends Model
         return $this->belongsTo(Asignaturas::class)->withTrashed();
     }
 
+    public function tallerista()
+    {
+        return $this->belongsTo(Talleristas::class)->withTrashed();
+    }
+
     public function programa()
     {
         return $this->belongsTo(Programas::class)->withTrashed();
+    }
+
+    public function campanha()
+    {
+        return $this->belongsTo(Campanhas::class)->withTrashed();
     }
 }

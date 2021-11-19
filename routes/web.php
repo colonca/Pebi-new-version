@@ -22,7 +22,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //pagina principal despues de que el usuario se haya logueado
     Route::view('/dashboard', 'pages/dashboard');
-    Route::view('/calendario', 'pages/calendario');
+    Route::view('/calendario', 'pages/calendario/index');
 
     //modulo de generales
     Route::prefix('generales')->group(function () {

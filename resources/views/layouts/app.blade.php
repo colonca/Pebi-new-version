@@ -23,7 +23,7 @@
 <body class="font-sans antialiased">
     <div class="flex flex-col h-screen">
         <div class="flex flex-1 overflow-y-hidden">
-            <x-sidebar.main/>
+            <x-sidebar.main />
             <div class="panel flex-grow flex flex-col px-6 mt-8">
                 <x-navbar />
                 <div class="flex-grow overflow-y-auto">
@@ -35,6 +35,7 @@
     <livewire:components.modal />
     <livewire:components.delete-modal />
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Forms;
 
 use App\Http\Livewire\Traits\InteractsWithFlashMessage;
 use App\Http\Livewire\Traits\InteractsWithModal;
+use App\Models\Calendario\Event;
 use App\Models\Generales\Asignaturas;
 use App\Models\Generales\Estudiantes;
 use App\Models\Generales\Programas;
@@ -27,12 +28,18 @@ class IntervencionGrupalForm extends BaseForm
         'taller_id' => null,
         'tallerista_id' => null,
         'fecha' => null,
+        'lugar' => null,
+        'profesor' => null,
+        'celular_profesor' => null,
+        'type' => IntervencionesGrupales::class,
         'estudiantes' => []
     ];
 
     public $asignaturas = [];
     public $talleres = [];
     public string $query = '';
+
+
 
     public function rules()
     {
@@ -93,6 +100,29 @@ class IntervencionGrupalForm extends BaseForm
         }, $data['estudiantes']);
         $model->estudiantes()->sync($estudiantes);
         $this->message('Intervención Grupal Guardada Correctamente');
+        //agendar o actualizar evento
+        $event = Event::where('description', 'like', '%' . $model->id . '%')->first();
+        $event = $event ? $event->id : null;
+        $event = Event::updateOrCreate(
+            ['id' => $event],
+            [
+                'title' => 'Intervencion Grupal',
+                'description' => json_encode([
+                    'id' => $model->id,
+                    'asignatura' => $model->asignatura->nombre,
+                    'programa' => $model->programa->nombre,
+                    'taller' => $model->taller->nombre,
+                    'tallerista' => $model->tallerista->nombres,
+                    'lugar' => $model->lugar,
+                    'profesor' => $model->profesor,
+                    'celular_profesor' => $model->celular_profesor
+
+                ]),
+                'type' => 'Intervencion Grupal',
+                'start' => $data['fecha']
+            ]
+        );
+        $event->save();
         $this->emit('list:refresh');
         $this->closeModal();
     }

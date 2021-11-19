@@ -15,6 +15,7 @@ class CreateProgramasTable extends Migration
     {
         Schema::create('programas', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo', 9);
             $table->text('nombre');
             $table->text('facultad');
             $table->softDeletes();

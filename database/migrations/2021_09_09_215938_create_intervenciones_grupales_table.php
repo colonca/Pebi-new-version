@@ -25,6 +25,9 @@ class CreateIntervencionesGrupalesTable extends Migration
             $table->foreign('tallerista_id')->references('id')->on('talleristas')->cascadeOnDelete();
             $table->foreignId('campanha_id');
             $table->foreign('campanha_id')->references('id')->on('campanhas')->cascadeOnDelete();
+            $table->string('lugar');
+            $table->string('profesor');
+            $table->string('celular_profesor');
             $table->timestamp('fecha');
             $table->softDeletes();
             $table->timestamps();

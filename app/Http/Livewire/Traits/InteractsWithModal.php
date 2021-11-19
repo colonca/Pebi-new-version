@@ -29,4 +29,3 @@ trait InteractsWithModal
         $this->emitTo('components.delete-modal', 'showModal', $params);
     }
 }
-

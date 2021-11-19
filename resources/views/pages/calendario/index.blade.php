@@ -3,7 +3,7 @@
 @section('content')
 <x-breadcrumbs :items="[
     ['title' => 'Inicio', 'url' => 'dashboard'],
-    ['title' => 'Talleristas', 'url' => '']
+    ['title' => 'Calendario', 'url' => '']
   ]" />
-<livewire:generales.talleristas />
+<livewire:components.calendario />
 @endsection
