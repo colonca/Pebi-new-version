@@ -1,7 +1,7 @@
 <div class="navbar flex items-center">
     <!-- Simplicity is an acquired taste. - Katharine Gerould -->
     <div class="navbar__title text-gray-800 text-xl font-semibold flex-grow">
-        Dashboard
+        SIAT
     </div>
     <ul class="navbar__menu flex item-center  text-gray-500">
         <li class="navbar__menu__date flex items-center bg-blue-100 p-2 rounded-md ">
