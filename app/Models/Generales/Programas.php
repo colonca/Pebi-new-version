@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Programas extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+	use HasFactory;
+	use SoftDeletes;
 
-    protected $fillable = ['id', 'nombre', 'facultad', 'created_at', 'updated_at'];
+	protected $fillable = ['id', 'codigo', 'nombre', 'facultad', 'created_at', 'updated_at'];
 }

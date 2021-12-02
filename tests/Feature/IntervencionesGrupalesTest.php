@@ -34,6 +34,5 @@ class IntervencionesGrupalesTest extends TestCase
             ->set('form.fecha', $date)
             ->set('form.estudiantes', $estudiantes)
             ->call('submit');
-        
     }
 }

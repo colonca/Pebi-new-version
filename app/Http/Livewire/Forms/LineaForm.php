@@ -4,47 +4,40 @@ namespace App\Http\Livewire\Forms;
 
 use App\Http\Livewire\Traits\InteractsWithFlashMessage;
 use App\Http\Livewire\Traits\InteractsWithModal;
-use App\Models\Generales\Campanhas;
 use App\Models\Generales\Linea;
 use Illuminate\Support\Arr;
-use Livewire\WithFileUploads;
 
-class CampanhaForm extends  BaseForm
+class LineaForm extends BaseForm
 {
-
-	use WithFileUploads;
 	use InteractsWithFlashMessage;
 	use InteractsWithModal;
 
 	public $form = [
 		'id' => null,
 		'nombre' => null,
-		'poblacion' => null,
-		'imagen' => null,
-		'linea_id' => null
+		'slug' => null
 	];
 
 	public function rules()
 	{
-		return Arr::dot(['form' => Campanhas::validationRules()]);
+		return Arr::dot(['form' => Linea::validationRules()]);
 	}
-
 
 	public function mount(array $params = [])
 	{
 		parent::mount($params);
-		$this->title = isset($params['id']) ? 'Actualizar Campaña' : 'Nueva Campaña';
+		$this->title = isset($form['id']) ? 'Actualizar Linea' :  'Crear Linea';
 	}
 
 	public function submit()
 	{
 		$data = $this->validate()['form'];
-		$model = Campanhas::updateOrCreate(
+		$model = Linea::updateOrCreate(
 			['id' => $data['id']],
 			$data
 		);
 		$model->save();
-		$this->message('Campaña Guardada Correctamente');
+		$this->message('Linea Guardada Correctamente');
 		$this->emit('list:refresh');
 		$this->closeModal();
 	}
@@ -56,8 +49,6 @@ class CampanhaForm extends  BaseForm
 
 	public function render()
 	{
-		return view('livewire.forms.campanha-form', [
-			'lineas' => Linea::all()
-		]);
+		return view('livewire.forms.linea-form', ['lineas' => Linea::all()]);
 	}
 }

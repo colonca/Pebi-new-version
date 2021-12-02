@@ -7,27 +7,26 @@
 					<path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
 				</svg>
 			</span>
-			<span class="ml-2">Crear Nueva Campaña</span>
+			<span class="ml-2">Crear Nueva Linea</span>
 		</button>
 	</div>
 	<div class="flex">
 		<div class="py-5 flex-grow bg-white">
-			<x-table.table :header="['Nombre','Población','Linea','Acciones']">
-				@foreach ($campanhas as $campanha)
+			<x-table.table :header="['Nombre','Slug','Acciones']">
+				@foreach ($lineas as $linea)
 				<tr class="text-gray-500">
-					<x-table.td>{{$campanha->nombre}}</x-table.td>
-					<x-table.td>{{$campanha->poblacion}}</x-table.td>
-					<x-table.td>{{$campanha->linea->nombre}}</x-table.td>
+					<x-table.td>{{$linea->nombre}}</x-table.td>
+					<x-table.td>{{$linea->slug}}</x-table.td>
 					<td class="text-left">
-						<x-table.action type="edit" wire:click="edit({{$campanha->id}})" />
-						<x-table.action type="delete" wire:click="delete({{$campanha->id}})" />
+						<x-table.action type="edit" wire:click="edit({{$linea->id}})" />
+						<x-table.action type="delete" wire:click="delete({{$linea->id}})" />
 					</td>
 				</tr>
 				@endforeach
 			</x-table.table>
 		</div>
 	</div>
-	<div class="m-4">
-		{!!$campanhas->links()!!}
+	<div class="mt-4">
+		{!!$lineas->links()!!}
 	</div>
 </div>

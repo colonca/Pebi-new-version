@@ -6,30 +6,32 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCampanhasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('campanhas', function (Blueprint $table) {
-            $table->id();
-            $table->string('imagen')->nullable();
-            $table->string('nombre');
-            $table->string('poblacion');
-            $table->softDeletes();
-            $table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('campanhas', function (Blueprint $table) {
+			$table->id();
+			$table->string('imagen')->nullable();
+			$table->string('nombre');
+			$table->string('poblacion');
+			$table->foreignId('linea_id');
+			$table->foreign('linea_id')->references('id')->on('lineas')->cascadeOnDelete();
+			$table->softDeletes();
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('campanhas');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists('campanhas');
+	}
 }

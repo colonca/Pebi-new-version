@@ -9,32 +9,32 @@ use Livewire\Component;
 
 class Campanhas extends Component
 {
-    use InteractsWithModal;
-    use InteractsWithFlashMessage;
+	use InteractsWithModal;
+	use InteractsWithFlashMessage;
 
-    public $listeners = ['list:refresh' => 'render'];
+	public $listeners = ['list:refresh' => 'render'];
 
-    public function render()
-    {
-        return view('livewire.generales.campanhas.index', [
-            'campanhas' => GeneralesCampanhas::paginate(10)
-        ]);
-    }
+	public function render()
+	{
+		return view('livewire.generales.campanhas.index', [
+			'campanhas' => GeneralesCampanhas::paginate(10)
+		]);
+	}
 
-    public function create()
-    {
-        $this->openModal('forms.campanha-form', [], 'w-1/3');
-    }
+	public function create()
+	{
+		$this->openModal('forms.campanha-form', [], 'w-3/5');
+	}
 
-    public function edit($id)
-    {
-        $campanha = GeneralesCampanhas::findOrFail($id);
-        $this->openModal('forms.campanha-form', $campanha, 'w-1/3');
-    }
+	public function edit($id)
+	{
+		$campanha = GeneralesCampanhas::findOrFail($id);
+		$this->openModal('forms.campanha-form', $campanha, 'w-3/5');
+	}
 
-    public function delete($id)
-    {
-        $campanha = GeneralesCampanhas::findOrFail($id);
-        $this->deleteModal($campanha);
-    }
+	public function delete($id)
+	{
+		$campanha = GeneralesCampanhas::findOrFail($id);
+		$this->deleteModal($campanha);
+	}
 }

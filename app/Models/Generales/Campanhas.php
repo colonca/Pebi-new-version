@@ -9,27 +9,34 @@ use Illuminate\Support\Str;
 
 class Campanhas extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+	use HasFactory;
+	use SoftDeletes;
 
-    protected $fillable = ['id', 'nombre', 'poblacion', 'imagen'];
+	protected $fillable = ['id', 'nombre', 'poblacion', 'imagen', 'linea_id'];
 
-    public function talleres()
-    {
-        return  $this->hasMany(TalleresGrupales::class);
-    }
+	public function talleres()
+	{
+		return  $this->hasMany(TalleresGrupales::class);
+	}
 
-    public static function validationRules(): array
-    {
-        return [
-            'id' => 'numeric|nullable',
-            'nombre' => 'required',
-            'poblacion' => 'required'
-        ];
-    }
+	public static function validationRules(): array
+	{
+		return [
+			'id' => 'numeric|nullable',
+			'nombre' => 'required',
+			'poblacion' => 'required',
+			'linea_id' => 'required|numeric'
+		];
+	}
 
-    public function getPoblacionAttribute($value)
-    {
-        return Str::limit($value, 30);
-    }
+	public function getPoblacionAttribute($value)
+	{
+		return Str::limit($value, 30);
+	}
+
+
+	public function linea()
+	{
+		return $this->belongsTo(Linea::class);
+	}
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsignaturasTable extends Migration
+class CreateLineaTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,12 +13,10 @@ class CreateAsignaturasTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('asignaturas', function (Blueprint $table) {
+		Schema::create('lineas', function (Blueprint $table) {
 			$table->id();
-			$table->text('codigo', 20);
-			$table->text('nombre', 80);
-			$table->integer('creditos');
-			$table->string('programa_codigo', 20);
+			$table->string('nombre', 70);
+			$table->string('slug', 7);
 			$table->softDeletes();
 			$table->timestamps();
 		});
@@ -31,6 +29,6 @@ class CreateAsignaturasTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('asignaturas');
+		Schema::dropIfExists('linea');
 	}
 }
