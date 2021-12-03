@@ -174,7 +174,7 @@ class IntervencionGrupalForm extends BaseForm
 
 	public function render()
 	{
-		if (!empty($this->form['programa_codigo'])) {
+		if (!empty($this->form['programa_id'])) {
 			$this->asignaturas = Asignaturas::where('programa_id', $this->form['programa_id'])->get();
 		}
 
