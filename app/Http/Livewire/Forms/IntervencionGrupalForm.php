@@ -46,6 +46,7 @@ class IntervencionGrupalForm extends BaseForm
 	public $talleres = [];
 	public $campanhas = [];
 	public $file;
+	public $importingFile = false;
 	public string $query = '';
 
 	public $listeners = ['import'];
@@ -102,15 +103,30 @@ class IntervencionGrupalForm extends BaseForm
 			'file' => 'required',
 		]);
 
-		$filePath = $this->file->store('imports');
-		dd($filePath);
-		$array = (new EstudianteAsistenciaImport)->toArray($filePath);
-		dd($array);
+		$this->importingFile = true;
+
+		$estudiantes = Estudiantes::all()->mapWithKeys(function ($item) {
+			return [$item['identificacion'] => $item];
+		});
+		$array = (new EstudianteAsistenciaImport)->toArray($this->file);
+		foreach ($array[0] as $row) {
+			$row['identificacion'] = intval($row['identificacion']);
+			if (!Arr::exists($estudiantes, $row['identificacion']))
+				continue;
+			$estudiante = $estudiantes[$row['identificacion']];
+			$estudiantesConEstaMismaIdentificacion = array_filter($this->form['estudiantes'] ?? [], function ($item) use ($estudiante) {
+				return $item['identificacion'] === $estudiante->identificacion;
+			});
+
+			if (!$estudiantesConEstaMismaIdentificacion)
+				$this->form['estudiantes'][] = $estudiantes[$row['identificacion']];
+		}
+
+		$this->importingFile = false;
 	}
 
 	public function submit(): void
 	{
-		dd($this->form);
 		$data = $this->validate()['form'];
 		DB::beginTransaction();
 		try {

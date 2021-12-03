@@ -18,7 +18,8 @@
         "lodash": "^4.17.19",
         "postcss": "^8.3.6",
         "postcss-import": "^14.0.1",
-        "tailwindcss": "^2.2.8"
+        "tailwindcss": "^2.2.8",
+        "tailwindcss-spinner": "^1.2.0"
     },
     "dependencies": {
         "autoprefixer": "^10.3.3"

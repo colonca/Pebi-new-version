@@ -115,7 +115,7 @@
 								<button wire:click="search" class="bg-green-200 py-1 px-2 mr-1 mt-1 rounded-lg text-gray-800">Search</button>
 							</div>
 						</div>
-						<div class="button-file flex  ml-2" x-data x-on:livewire-upload-finish="Livewire.emit('import')">
+						<div class="button-file flex ml-2" x-data x-on:livewire-upload-finish="Livewire.emit('import')">
 							<input type="file" style="display:none" id="import" wire:model="file" />
 							<button class="bg-blue-100 flex px-2 py-1 rounded" type="button" x-on:click.prevent="document.getElementById('import').click()">
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -123,6 +123,11 @@
 								</svg>
 								<span class="ml-2">Importar</span>
 							</button>
+							@if($this->importingFile)
+							<div class="flex justify-center m-4">
+								<div class="spinner"></div>
+							</div>
+							@endif
 						</div>
 					</div>
 					<div class="max-h-80 overflow-y-auto">
