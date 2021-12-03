@@ -12,11 +12,11 @@ class Asignaturas extends Model
 	use SoftDeletes;
 
 	protected $fillable = [
-		'id', 'codigo', 'nombre', 'creditos', 'programa_codigo', 'created_at', 'updated_at'
+		'id', 'codigo', 'nombre', 'creditos', 'programa_id', 'created_at', 'updated_at'
 	];
 
 	public function programa()
 	{
-		return $this->belongsTo(Programas::class, 'programa_codigo', 'codigo');
+		return $this->belongsTo(Programas::class, 'programa_id', 'id');
 	}
 }

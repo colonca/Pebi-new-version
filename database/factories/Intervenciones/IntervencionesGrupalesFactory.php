@@ -43,8 +43,8 @@ class IntervencionesGrupalesFactory extends Factory
 
 		$date =  date('Y-m');
 		return [
-			'programa_codigo' => $asignatura->programa->codigo,
-			'asignatura_codigo' =>  $asignatura->codigo,
+			'programa_id' => $asignatura->programa->id,
+			'asignatura_id' =>  $asignatura->id,
 			'taller_id' =>  $taller->id,
 			'fecha' => date_format($this->faker->dateTime(), "$date-d\TH:i"),
 			'campanha_id' => $taller->campanha->id,

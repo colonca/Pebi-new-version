@@ -19,7 +19,7 @@ class IntervencionesGrupales extends Model
 	use SoftDeletes;
 
 	protected $fillable = [
-		'id', 'programa_codigo', 'asignatura_codigo', 'taller_id', 'tallerista_id', 'linea_id',
+		'id', 'programa_id', 'asignatura_id', 'taller_id', 'tallerista_id', 'linea_id',
 		'campanha_id', 'fecha', 'created_at', 'updated_at', 'profesor', 'lugar', 'celular_profesor'
 	];
 
@@ -27,8 +27,8 @@ class IntervencionesGrupales extends Model
 	{
 		return [
 			'id' => 'numeric|nullable',
-			'programa_codigo' =>  'required',
-			'asignatura_codigo' => 'required',
+			'programa_id' =>  'required',
+			'asignatura_id' => 'required',
 			'taller_id' => 'required',
 			'fecha' => 'required',
 			'estudiantes' => 'array',
@@ -58,7 +58,7 @@ class IntervencionesGrupales extends Model
 
 	public function asignatura()
 	{
-		return $this->belongsTo(Asignaturas::class, 'asignatura_codigo', 'codigo')->withTrashed();
+		return $this->belongsTo(Asignaturas::class, 'asignatura_id', 'id')->withTrashed();
 	}
 
 	public function tallerista()
@@ -73,7 +73,7 @@ class IntervencionesGrupales extends Model
 
 	public function programa()
 	{
-		return $this->belongsTo(Programas::class, 'programa_codigo', 'codigo')->withTrashed();
+		return $this->belongsTo(Programas::class, 'programa_id', 'id')->withTrashed();
 	}
 
 	public function campanha()

@@ -27,7 +27,7 @@ class AsignaturasFactory extends Factory
 			'codigo' => $this->faker->postcode,
 			'nombre' => $this->faker->firstName,
 			'creditos' => $this->faker->numberBetween(1, 4),
-			'programa_codigo' => $programa->codigo,
+			'programa_id' => $programa->id,
 		];
 	}
 }

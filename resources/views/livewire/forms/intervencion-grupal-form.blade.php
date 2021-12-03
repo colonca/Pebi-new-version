@@ -31,10 +31,10 @@
 							<div class="w-1/2 mr-2">
 								<x-jet-label for="nombre" value="{{ __('Programa') }}" />
 								<div class="mt-2">
-									<select name="programa" wire:model="form.programa_codigo" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+									<select name="programa" wire:model="form.programa_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 										<option value="">Seleccione un Programa</option>
 										@foreach ($programas as $programa)
-										<option value='{{$programa->codigo}}'>{{$programa->nombre}}</option>
+										<option value='{{$programa->id}}'>{{$programa->nombre}}</option>
 										@endforeach
 									</select>
 								</div>
@@ -42,10 +42,10 @@
 							<div class="w-1/2 mr-2">
 								<x-jet-label for="nombre" value="{{ __('Asignatura') }}" />
 								<div class="mt-2">
-									<select name="asignatura" wire:model="form.asignatura_codigo" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+									<select name="asignatura" wire:model="form.asignatura_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 										<option value="">Seleccione una Asignatura</option>
 										@foreach ($asignaturas as $asignatura)
-										<option value='{{$asignatura->codigo}}'>{{$asignatura->nombre}}</option>
+										<option value='{{$asignatura->id}}'>{{$asignatura->nombre}}</option>
 										@endforeach
 									</select>
 								</div>

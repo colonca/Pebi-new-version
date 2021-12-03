@@ -18,7 +18,7 @@ class CreateAsignaturasTable extends Migration
 			$table->text('codigo', 20);
 			$table->text('nombre', 80);
 			$table->integer('creditos');
-			$table->string('programa_codigo', 20);
+			$table->string('programa_id', 20);
 			$table->softDeletes();
 			$table->timestamps();
 		});

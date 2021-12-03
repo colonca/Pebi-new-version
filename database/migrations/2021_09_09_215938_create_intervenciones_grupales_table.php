@@ -15,8 +15,10 @@ class CreateIntervencionesGrupalesTable extends Migration
 	{
 		Schema::create('intervenciones_grupales', function (Blueprint $table) {
 			$table->id();
-			$table->string('programa_codigo', 20)->comment('Campo foráneo a la tabla programa');
-			$table->string('asignatura_codigo', 20)->comment('Campo foráneo a la tabla programa');
+			$table->foreignId('programa_id');
+			$table->foreign('programa_id')->references('id')->on('programas')->cascadeOnDelete();
+			$table->foreignId('asignatura_id');
+			$table->foreign('asignatura_id')->references('id')->on('asignaturas')->cascadeOnDelete();
 			$table->foreignId('taller_id');
 			$table->foreign('taller_id')->references('id')->on('talleres_grupales')->cascadeOnDelete();
 			$table->foreignId('tallerista_id');

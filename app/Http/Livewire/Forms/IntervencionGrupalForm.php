@@ -28,8 +28,8 @@ class IntervencionGrupalForm extends BaseForm
 
 	public $form = [
 		'id' => null,
-		'programa_codigo' => null,
-		'asignatura_codigo' => null,
+		'programa_id' => null,
+		'asignatura_id' => null,
 		'campanha_id' => null,
 		'taller_id' => null,
 		'tallerista_id' => null,
