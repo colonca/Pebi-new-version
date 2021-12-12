@@ -1,0 +1,12 @@
+.dropdown{
+	@apply overflow-y-auto w-96 h-96;
+}
+
+.dropdown__item {
+	cursor: pointer;	
+}
+
+.dropdown__item:hover {
+  @apply text-indigo-700;
+  @apply font-semibold;
+}

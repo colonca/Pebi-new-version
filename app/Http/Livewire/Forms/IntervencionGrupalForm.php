@@ -165,7 +165,7 @@ class IntervencionGrupalForm extends BaseForm
 			$event->save();
 			DB::commit();
 		} catch (Exception $e) {
-			$this->message('ha ocurrido un error, por favor intentalo mas tarder');
+			$this->message('ha ocurrido un error, por favor intentalo mas tarde');
 			DB::rollBack();
 		}
 		$this->emit('list:refresh');

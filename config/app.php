@@ -75,7 +75,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | The application locale determines the default locale that will be used
-    | by the translation service provider. You are free to set this value
+	| by the translation service 
+rovider. You are free to set this value
     | to any of the locales which will be supported by the application.
     |
     */
@@ -166,6 +167,7 @@ return [
          * Package Service Providers...
          */
 		Maatwebsite\Excel\ExcelServiceProvider::class,
+		Spatie\Permission\PermissionServiceProvider::class,
 
 		/*
          * Application Service Providers...

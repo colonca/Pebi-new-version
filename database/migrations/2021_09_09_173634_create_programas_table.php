@@ -15,9 +15,9 @@ class CreateProgramasTable extends Migration
 	{
 		Schema::create('programas', function (Blueprint $table) {
 			$table->id();
-			$table->string('codigo', 20);
-			$table->text('nombre');
-			$table->text('facultad');
+			$table->string('nombre');
+			$table->foreignId('facultad_id');
+			$table->foreign('facultad_id')->references('id')->on('facultades')->onDelete('CASCADE');;
 			$table->softDeletes();
 			$table->timestamps();
 		});

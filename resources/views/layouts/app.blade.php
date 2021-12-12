@@ -2,40 +2,42 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+	<title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+	<!-- Fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+	<!-- Styles -->
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-    @livewireStyles
+	@livewireStyles
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+	<!-- Scripts -->
+	<script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
+<!-- overflow-y-auto w-96 h-96 hover:bg-blue-200-->
+
 <body class="font-sans antialiased">
-    <div class="flex flex-col h-screen">
-        <div class="flex flex-1 overflow-y-hidden">
-            <x-sidebar.main />
-            <div class="panel flex-grow flex flex-col px-6 mt-8">
-                <x-navbar />
-                <div class="flex-grow overflow-y-auto">
-                    @yield('content')
-                </div>
-            </div>
-        </div>
-    </div>
-    <livewire:components.modal />
-    <livewire:components.delete-modal />
-    @livewireScripts
-    @stack('scripts')
+	<div class="flex flex-col h-screen">
+		<div class="flex flex-1 overflow-y-hidden ">
+			<x-sidebar.main />
+			<div class="panel flex-grow flex flex-col px-6 mt-8 ">
+				<x-navbar />
+				<div class="flex-grow overflow-y-auto">
+					@yield('content')
+				</div>
+			</div>
+		</div>
+	</div>
+	<livewire:components.modal />
+	<livewire:components.delete-modal />
+	@livewireScripts
+	@stack('scripts')
 </body>
 
 </html>

@@ -2,7 +2,6 @@
 
 namespace App\Imports;
 
-use App\Models\Generales\Estudiantes;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;

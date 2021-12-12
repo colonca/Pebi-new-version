@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsignaturasTable extends Migration
+class CreateFacultadesTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,12 +13,10 @@ class CreateAsignaturasTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('asignaturas', function (Blueprint $table) {
+		Schema::create('facultades', function (Blueprint $table) {
 			$table->id();
-			$table->string('codigo', 20)->unique()->index();
-			$table->text('nombre', 80);
-			$table->integer('creditos');
-			$table->string('programa_id', 20);
+			$table->string('nombre');
+			$table->string('facultad');
 			$table->softDeletes();
 			$table->timestamps();
 		});
@@ -31,6 +29,6 @@ class CreateAsignaturasTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('asignaturas');
+		Schema::dropIfExists('facultad');
 	}
 }

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +30,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 		Route::view('/talleristas', 'pages.generales.talleristas.index')->name('generales.talleristas');
 		Route::view('/campañas', 'pages.generales.campanhas.index')->name('generales.campanhas');
 		Route::view('/talleres-grupales', 'pages.generales.talleres_grupales.index')->name('generales.talleres_grupales');
+	});
+
+	Route::prefix('academico')->group(function () {
+		Route::view('/estudiantes', 'pages.academico.estudiantes.index')->name('academico.estudiantes');
 	});
 
 	//modulo de intervenciones

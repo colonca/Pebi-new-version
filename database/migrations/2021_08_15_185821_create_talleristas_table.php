@@ -15,7 +15,7 @@ class CreateTalleristasTable extends Migration
 	{
 		Schema::create('talleristas', function (Blueprint $table) {
 			$table->id()->comment('llave primaria');
-			$table->string('identificacion', 12);
+			$table->string('identificacion', 15);
 			$table->string('nombres')->comment('Nombre completo del tallerista');
 			$table->string('celular', 20)->comment('numero de telefono de contacto');
 			$table->string('correo_institucional')->comment('correo institucional');
