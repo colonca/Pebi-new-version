@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CargaEstudianteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
+Route::prefix('cargas')->group(function () {
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -30,6 +34,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 		Route::view('/talleristas', 'pages.generales.talleristas.index')->name('generales.talleristas');
 		Route::view('/campañas', 'pages.generales.campanhas.index')->name('generales.campanhas');
 		Route::view('/talleres-grupales', 'pages.generales.talleres_grupales.index')->name('generales.talleres_grupales');
+	});
+
+	Route::prefix('cargas')->group(function () {
+		Route::view('/estudiantes', 'pages.cargas.estudiantes')->name('cargas.estudiantes');
+		Route::post('/estudiantes', [CargaEstudianteController::class, 'upload']);
 	});
 
 	Route::prefix('academico')->group(function () {

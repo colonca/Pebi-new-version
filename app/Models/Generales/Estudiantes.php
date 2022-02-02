@@ -51,12 +51,12 @@ class Estudiantes extends Model
 
 	public function getProgramaEstudianteAttribute()
 	{
-		return Str::limit($this->programa->nombre, 20);
+		return $this->programa ? Str::limit($this->programa->nombre, 20) : '';
 	}
 
 
 	public function programa()
 	{
-		return $this->belongsTo(Programas::class);
+		return $this->belongsTo(Programas::class)->withTrashed();
 	}
 }
