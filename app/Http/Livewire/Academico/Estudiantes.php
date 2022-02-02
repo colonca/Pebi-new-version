@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Academico;
 
+use App\Http\Livewire\Traits\InteractsWithModal;
 use App\Models\Generales\Estudiantes as GeneralesEstudiantes;
 use App\Models\Generales\Programas;
 use Livewire\Component;
@@ -11,11 +12,14 @@ class Estudiantes extends Component
 {
 
 	use WithPagination;
+	use InteractsWithModal;
 
 	public $filtros = [
 		'programa' => '',
 		'estado' => '',
-		'identificacion' => ''
+		'identificacion' => '',
+		'riesgo' => '',
+		'sede' => ''
 	];
 
 	public function filtro($filtro, $value)
@@ -32,6 +36,11 @@ class Estudiantes extends Component
 		$this->filtros[$filtro] = '';
 	}
 
+	public function infoEstudiante($id)
+	{
+		$this->openModal('academico.info-estudiantes', ['estudiante' => $id], 'modal-lg');
+	}
+
 	public function render()
 	{
 		$query = GeneralesEstudiantes::query();
@@ -45,8 +54,7 @@ class Estudiantes extends Component
 		$query->when($this->filtros['identificacion'], function ($query) {
 			return $query->where('identificacion', 'like', '%' . $this->filtros['identificacion'] . '%');
 		});
-		$estudiantes = $query->paginate(15);
-
+		$estudiantes = $query->orderBy('primer_nombre')->paginate(15);
 		$programas = Programas::all()->mapWithKeys(function ($item) {
 			return [$item['id'] => $item];
 		});

@@ -1,0 +1,12 @@
+.modal-md{
+ @apply w-3/5;
+}
+
+.modal-sm{
+	@apply w-1/3;
+}
+
+.modal-lg{
+    @apply w-11/12
+}
+

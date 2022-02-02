@@ -32,7 +32,7 @@ class CreateEstudiantesTable extends Migration
 			$table->date('fecha_ingreso')->comment('Fecha de ingreso a la universidad');
 			$table->string('semestre', 2)->comment('semestre actual del estudiante')->nullable();
 			$table->foreignId('programa_id')->comment('Campo foráneo a la tabla programa');
-			$table->foreign('programa_id')->references('id')->on('programas')->onDelete('CASCADE');
+			$table->foreign('programa_id')->references('id')->on('programas');
 			$table->string('sede')->comment('sede del campus universitario')->nullable();
 			$table->softDeletes();
 			$table->timestamps();

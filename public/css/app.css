@@ -1200,6 +1200,9 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
+.mr-4 {
+	margin-right: 1rem;
+}
 .block {
 	display: block;
 }
@@ -2062,6 +2065,15 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(67, 56, 202, var(--tw-text-opacity));
 	font-weight: 600;
+}
+.modal-md {
+	width: 60%;
+}
+.modal-sm {
+	width: 33.333333%;
+}
+.modal-lg {
+	width: 91.666667%;
 }
 .hover\:border-gray-300:hover {
 	--tw-border-opacity: 1;

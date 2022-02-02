@@ -35,11 +35,14 @@ class EstudiantesSeeder extends Seeder
 						'segundo_apellido' => key_exists('segundo_apellido', $estudiante) ? $estudiante['segundo_apellido'] : '',
 						'correo' => key_exists('correo', $estudiante) ? $estudiante['correo'] : '',
 						'semestre' => $estudiante['semestre'],
+						'celular' => '3052891290',
+						'telefono' => '3082019302',
 						'estado' => $estudiante['estado'],
 						'fecha_ingreso' => date('Y-m-d'),
 						'fecha_nacimiento' => date('Y-m-d'),
 						'programa_id' => $programa->id,
 						'sexo' => ['m', 'f'][rand(0, 1)],
+						'sede' => 'VALLEDUPAR',
 					]
 				);
 			}
