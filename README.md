@@ -20,7 +20,7 @@ docker-compose up -d
 3. Abrir el contenedor de la aplicación en el modo iterativo.
 
 ```bash
-docker exec -ti pebi-app bashdocker-compose up -d
+docker exec -ti pebi-app bash
 ```
 
 4. Instalación de dependencias, crear key y correr las migraciones.
