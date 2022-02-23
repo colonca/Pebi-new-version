@@ -49,4 +49,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::prefix('intervenciones')->group(function () {
 		Route::view('/grupales/index', 'pages.intervenciones.grupales.index');
 	});
+
+    //modulo de usuarios
+    Route::prefix('usuarios')->group(function (){
+        Route::view('/users','pages.usuarios.index')->name('usuarios.index');
+    });
 });
