@@ -11,12 +11,19 @@
         </button>
     </div>
     <div class="py-5 flex-grow bg-white">
-        <x-table.table :header="['Id','Nombre','Correo','']">
+        <x-table.table :header="['Id','Nombre','Correo','Rol','']">
             @foreach($usuarios as $usuario)
                 <tr class="text-gray-500">
                     <x-table.td>{{$usuario->id}}</x-table.td>
                     <x-table.td>{{$usuario->name}}</x-table.td>
                     <x-table.td>{{$usuario->email}}</x-table.td>
+                    <x-table.td>
+                        <ul>
+                        @foreach($usuario->getRoleNames() as $rol)
+                            <li>{{$rol}}</li>
+                        @endforeach
+                        </ul>
+                    </x-table.td>
                     <td class="text-left">
                         <x-table.action type="edit" wire:click="edit({{$usuario->id}})" />
                         <x-table.action type="delete" wire:click="delete({{$usuario->id}})" />

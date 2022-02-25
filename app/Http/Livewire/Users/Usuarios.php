@@ -25,6 +25,18 @@ class Usuarios extends Component
     {
         $this->openModal('forms.usuarios-form', [], 'w-4/5');
     }
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $this->openModal('forms.usuarios-form', $user->load('roles'), 'w-4/5');
+    }
+
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        $this->deleteModal($user);
+    }
+
 
 
 }
