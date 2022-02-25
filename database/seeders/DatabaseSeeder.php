@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PeriodosAcademicosSeeder::class);
 		$this->call(FacultadSeeder::class);
 		$this->call(ProgramasSeeder::class);
+		$this->call(RiesgosSeeder::class);
 		$this->call(EstudiantesSeeder::class);
 		$this->call(AsignaturasSeeder::class);
 		$this->call(TalleristasSeeder::class);

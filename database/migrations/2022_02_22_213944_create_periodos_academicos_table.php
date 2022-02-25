@@ -20,6 +20,7 @@ class CreatePeriodosAcademicosTable extends Migration
             $table->date('fecha_inicio')->comment('fecha inicio del período');
             $table->date('fecha_fin')->comment('fecha fin del período');
             $table->integer('anio')->comment('año del período académico');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
