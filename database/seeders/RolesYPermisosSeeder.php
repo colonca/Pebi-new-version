@@ -27,7 +27,13 @@ class RolesYPermisosSeeder extends Seeder
 		Permission::create(['name' => 'intervenciones-grupales.update'])->syncRoles([$admin, $profesional, $practicante]);
 		Permission::create(['name' => 'intervenciones-grupales.delete'])->syncRoles([$admin, $profesional, $practicante]);
 
-		//talleristas
+        //intervenciones individuales
+        Permission::create(['name' => 'intervenciones-individuales.index'])->syncRoles([$admin, $profesional]);
+        Permission::create(['name' => 'intervenciones-individuales.create'])->syncRoles([$admin, $profesional]);
+        Permission::create(['name' => 'intervenciones-individuales.update'])->syncRoles([$admin, $profesional]);
+        Permission::create(['name' => 'intervenciones-individuales.delete'])->syncRoles([$admin, $profesional]);
+
+        //talleristas
 		Permission::create(['name' => 'talleristas.index'])->syncRoles([$admin, $secretaria]);
 		Permission::create(['name' => 'talleristas.create'])->syncRoles([$admin, $secretaria]);
 		Permission::create(['name' => 'talleristas.update'])->syncRoles([$admin, $secretaria]);
@@ -62,7 +68,17 @@ class RolesYPermisosSeeder extends Seeder
 		Permission::create(['name' => 'estudiantes.create'])->syncRoles([$admin, $secretaria]);
 		Permission::create(['name' => 'estudiantes.update'])->syncRoles([$admin, $secretaria]);
 
-		//usuarios
+        //periodos academicos
+        Permission::create(['name' => 'periodos.index'])->syncRoles([$admin, $secretaria]);
+        Permission::create(['name' => 'periodos.create'])->syncRoles([$admin, $secretaria]);
+        Permission::create(['name' => 'periodos.update'])->syncRoles([$admin, $secretaria]);
+        Permission::create(['name' => 'periodos.delete'])->syncRoles([$admin, $secretaria]);
+
+        //Reportes
+        Permission::create(['name' => 'reportes.lineas'])->syncRoles([$admin, $secretaria]);
+        Permission::create(['name' => 'reportes.riesgos'])->syncRoles([$admin, $secretaria]);
+
+        //usuarios
 		Permission::create(['name' => 'usuarios.index'])->syncRoles([$admin, $secretaria]);
 	}
 }

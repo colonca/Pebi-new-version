@@ -15,9 +15,9 @@ class IntervencionesGrupalesSeeder extends Seeder
      */
     public function run()
     {
+        $estudiantes = Estudiantes::all(['id'])->take(10);
         IntervencionesGrupales::factory()
-                    ->count(10)
-                    ->has(Estudiantes::factory()->count(8))
+                    ->count(5)
                     ->create();
     }
 }

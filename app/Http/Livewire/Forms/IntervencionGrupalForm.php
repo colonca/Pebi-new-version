@@ -8,6 +8,7 @@ use App\Imports\EstudianteAsistenciaImport;
 use App\Models\Calendario\Event;
 use App\Models\Generales\Asignaturas;
 use App\Models\Generales\Estudiantes;
+use App\Models\Generales\PeriodosAcademicos;
 use App\Models\Generales\Programas;
 use App\Models\Generales\TalleresGrupales;
 use App\Models\Generales\Campanhas;
@@ -128,13 +129,21 @@ class IntervencionGrupalForm extends BaseForm
 	public function submit(): void
 	{
 		$data = $this->validate()['form'];
+
+        $periodo = PeriodosAcademicos::where('estado','ACTIVO')->first();
+        if(!$periodo){
+            $this->message('No se encuentran periodos Activos.','error');
+            return;
+        }
+
 		DB::beginTransaction();
 		try {
+
+            $data['periodo_id'] = $periodo->id;
 			$model = IntervencionesGrupales::updateOrCreate(
 				['id' => $data['id']],
 				$data
 			);
-			$model->save();
 			$estudiantes = array_map(function ($item) {
 				return $item['id'];
 			}, $data['estudiantes']);
@@ -175,7 +184,7 @@ class IntervencionGrupalForm extends BaseForm
 	public function render()
 	{
 		if (!empty($this->form['programa_id'])) {
-			$this->asignaturas = Asignaturas::where('programa_id', $this->form['programa_id'])->get();
+			$this->asignaturas = Asignaturas::where('programa_id', $this->form['programa_id'])->orderBy('nombre')->get();
 		}
 
 		if (!empty($this->form['linea_id'])) {

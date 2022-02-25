@@ -6,6 +6,7 @@ use App\Models\Generales\Asignaturas;
 use App\Models\Generales\Campanhas;
 use App\Models\Generales\Estudiantes;
 use App\Models\Generales\Linea;
+use App\Models\Generales\PeriodosAcademicos;
 use App\Models\Generales\Programas;
 use App\Models\Generales\TalleresGrupales;
 use App\Models\Generales\Talleristas;
@@ -20,7 +21,8 @@ class IntervencionesGrupales extends Model
 
 	protected $fillable = [
 		'id', 'programa_id', 'asignatura_id', 'taller_id', 'tallerista_id', 'linea_id',
-		'campanha_id', 'fecha', 'created_at', 'updated_at', 'profesor', 'lugar', 'celular_profesor'
+		'campanha_id', 'fecha', 'created_at', 'updated_at', 'profesor', 'lugar', 'celular_profesor',
+        'periodo_id'
 	];
 
 	public static function validationRules(): array
@@ -50,6 +52,10 @@ class IntervencionesGrupales extends Model
 	{
 		return $this->belongsToMany(Estudiantes::class, 'grupales_estudiante', 'grupal_id', 'estudiante_id');
 	}
+
+    public function periodo(){
+        return $this->belongsTo(PeriodosAcademicos::class, 'periodo_id','id')->withTrashed();
+    }
 
 	public function taller()
 	{

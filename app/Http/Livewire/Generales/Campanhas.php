@@ -6,11 +6,13 @@ use App\Http\Livewire\Traits\InteractsWithFlashMessage;
 use App\Http\Livewire\Traits\InteractsWithModal;
 use App\Models\Generales\Campanhas as GeneralesCampanhas;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Campanhas extends Component
 {
 	use InteractsWithModal;
 	use InteractsWithFlashMessage;
+    use WithPagination;
 
 	public $listeners = ['list:refresh' => 'render'];
 

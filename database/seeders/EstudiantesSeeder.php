@@ -3,8 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Generales\Estudiantes;
+use App\Models\Generales\Historico;
+use App\Models\Generales\PeriodosAcademicos;
 use App\Models\Generales\Programas;
+use App\Models\Generales\Riesgo;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class EstudiantesSeeder extends Seeder
@@ -15,9 +19,21 @@ class EstudiantesSeeder extends Seeder
 		$start = microtime(true);
 		echo "Seeded: " . EstudiantesSeeder::class . "\n";
 		echo "Sincronizando Estudiantes \n";
+        $riesgos = Riesgo::all()->mapWithKeys(function ($item) {
+            return [$item['descripcion'] => $item];
+        });
 		$programas = Programas::all();
 		$prev = 0;
 		$loop = 0;
+        $periodo = PeriodosAcademicos::where('estado', 'ACTIVO')->first();
+        if(!$periodo){
+            echo 'Error: no se encuentran periodos activos';
+            return;
+        }
+        if(empty($riesgos)){
+            echo 'Error: no existen riesgos registrados';
+            return;
+        }
 		foreach ($programas as $programa) {
 			$url = config('academosoft.host') . '/unicesar/academusoft/academico/integracion/estudiantesPrograma.jsp?programa=' . $programa->id;
 			$response = Http::get($url);
@@ -25,7 +41,8 @@ class EstudiantesSeeder extends Seeder
 				continue;
 			$estudiantes = $response->json()['data'];
 			foreach ($estudiantes as $estudiante) {
-				Estudiantes::updateOrCreate(
+                DB::beginTransaction();
+				$model = Estudiantes::updateOrCreate(
 					['identificacion' => $estudiante['identificacion']],
 					[
 						'tipo_documento' => ['CC', 'TI', 'CE'][rand(0, 2)],
@@ -45,6 +62,17 @@ class EstudiantesSeeder extends Seeder
 						'sede' => 'VALLEDUPAR',
 					]
 				);
+                Historico::updateOrCreate(
+                    ['periodo_id' => $periodo->id, 'estudiante_id' => $model->id],
+                    [
+                      'periodo_id' => $periodo->id,
+                      'estudiante_id' => $model->id,
+                      'semestre_actual' => $model->semestre,
+                      'riesgo_id' => $riesgos['Riesgo medio']->id,
+                      'estado' => $model->estado,
+                    ]
+                );
+                DB::commit();
 			}
 			$done = intval(100 * ($loop) / count($programas));
 			echo $prev . '% done ...' . "\n";

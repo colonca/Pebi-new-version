@@ -19,6 +19,7 @@ class TallerGrupalForm extends BaseForm
         'nombre' => null,
         'descripcion' => null,
         'campanha_id' => null,
+        'disponibilidad' => []
     ];
 
     public function mount(array $params = [])
@@ -32,13 +33,13 @@ class TallerGrupalForm extends BaseForm
         return Arr::dot(['form' => TalleresGrupales::validationRules()]);
     }
 
-
     public function render()
     {
         return view('livewire.forms.taller-grupal-form', [
             'campanhas' => GeneralesCampanhas::all()
         ]);
     }
+
 
     public function submit()
     {

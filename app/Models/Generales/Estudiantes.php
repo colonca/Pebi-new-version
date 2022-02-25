@@ -26,6 +26,16 @@ class Estudiantes extends Model
 		return $this->belongsToMany(IntervencionesGrupales::class, 'grupales_estudiante', 'estudiante_id', 'grupal_id');
 	}
 
+    public function getRiesgoAttribute(){
+        $periodo = PeriodosAcademicos::where('estado','ACTIVO')->first();
+        if(!$periodo)
+            return 'INDEFINIDO';
+        $historico = Historico::where(['estudiante_id' => $this->id, 'periodo_id' => $periodo->id])->first();
+        $riesgo = $historico ? $historico->riesgo->descripcion : 'INDEFINIDO';
+        return $riesgo;
+    }
+
+
 	public function getNombreAttribute()
 	{
 		return $this->primer_nombre . ' ' . $this->segundo_nombre . ' ' . $this->primer_apellido . ' ' . $this->segundo_apellido;
@@ -54,6 +64,9 @@ class Estudiantes extends Model
 		return $this->programa ? Str::limit($this->programa->nombre, 20) : '';
 	}
 
+    public function historico(){
+        return $this->hasMany(Historico::class, 'estudiante_id','id');
+    }
 
 	public function programa()
 	{

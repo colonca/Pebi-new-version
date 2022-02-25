@@ -62,7 +62,6 @@
 						</div>
 					</x-slot>
 				</x-jet-dropdown>
-
 				<x-jet-dropdown width="96 dropdown">
 					<x-slot name="trigger">
 						<button class="flex items-center bg-gray-100 px-2 py-1 mr-2 rounded">
@@ -184,18 +183,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex">
-			<div class="py-5 flex-grow bg-white">
-				<x-table.table :header="['Identificación','Nombre','Programa','E-mail','Riesgo','Estado','Acciones']">
+			<div class="py-5 bg-white">
+				<x-table.table :header="['Identificación','Nombre','Programa','E-mail','RIESGO','Acciones']">
 					@foreach ($estudiantes as $estudiante)
 					<tr class="text-gray-500">
 						<x-table.td>{{$estudiante->numero_identificacion}}</x-table.td>
 						<x-table.td>{{$estudiante->nombre}}</x-table.td>
 						<x-table.td>{{$estudiante->programa_estudiante}}</x-table.td>
 						<x-table.td>{{$estudiante->correo}}</x-table.td>
-						<x-table.td>{{ ['Riesgo Super Alto','Riesgo Alto', 'Riesgo Medio','Riesgo Bajo'][rand(0,3)]}}</x-table.td>
-						<x-table.td>{{$estudiante->estado}}</x-table.td>
-						<td class="text-left">
+                        <x-table.td>{{$estudiante->riesgo}}</x-table.td>
+						<td class="text-center">
 							<x-table.action type="other" wire:click="infoEstudiante({{$estudiante->id}})">
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
@@ -206,7 +203,6 @@
 					@endforeach
 				</x-table.table>
 			</div>
-		</div>
 		<div class="mt-4">
 			{{$estudiantes->links()}}
 		</div>

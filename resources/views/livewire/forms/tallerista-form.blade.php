@@ -46,7 +46,11 @@
 					<x-jet-input id="numero_horas_semanales" class="block mt-1 w-full" type="number" wire:model="form.numero_horas_semanales" placeholder="horas disponibles" autofocus />
 				</div>
 			</div>
-			<div class="flex items-center justify-end mt-4">
+            <div class="my-2">
+                <h2 class="font-semibold text-center my-4">DISPONIBILIDAD</h2>
+                <x-horario :disponibilidad="$disponibilidad" />
+            </div>
+            <div class="flex items-center justify-end mt-4">
 				<a href="" wire:click.prevent="cancelar" class="inline-flex items-center px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition ml-4">
 					{{ __('Cancelar') }}
 				</a>

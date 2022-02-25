@@ -26,9 +26,9 @@
 	<div class="flex flex-col h-screen">
 		<div class="flex flex-1 overflow-y-hidden ">
 			<x-sidebar.main />
-			<div class="panel flex-grow flex flex-col px-6 mt-8 ">
+			<div class="panel flex-grow flex flex-col px-6 mt-8 overflow-x-hidden">
 				<x-navbar />
-				<div class="flex-grow overflow-y-auto">
+				<div class="flex-grow w-full overflow-y-auto overflow-x-hidden">
 					@yield('content')
 				</div>
 			</div>

@@ -25,7 +25,7 @@ class AsignaturasSeeder extends Seeder
 				continue;
 			$asignaturas = $response->json()['data'];
 			foreach ($asignaturas as $asignatura) {
-				Asignaturas::updateOrcreate(['codigo' => $asignatura['codigo']], [
+				Asignaturas::updateOrcreate(['codigo' => $asignatura['codigo'], 'programa_id' => $programa->id], [
 					'codigo' => $asignatura['codigo'],
 					'nombre' => $asignatura['nombre'],
 					'creditos' => $asignatura['creditos'],

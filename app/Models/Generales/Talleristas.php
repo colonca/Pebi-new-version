@@ -38,4 +38,8 @@ class Talleristas extends Model
 			'tipo' => 'required'
 		];
 	}
+
+    public function horarios() {
+        return $this->belongsToMany(Horario::class,'disponibilidad_talleristas','tallerista_id','horario_id');
+    }
 }
