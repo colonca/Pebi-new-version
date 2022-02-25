@@ -37,7 +37,6 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $hidden = [
-		'password',
 		'remember_token',
 		'two_factor_recovery_codes',
 		'two_factor_secret',
@@ -60,4 +59,20 @@ class User extends Authenticatable
 	protected $appends = [
 		'profile_photo_url',
 	];
+
+    public static function validationRules($edit = false): array
+    {
+        $validation = [
+            'id' => 'numeric|nullable',
+            'name' => 'required',
+            'email' => 'email|required',
+            'rol' => 'required',
+            'password' => 'required|confirmed',
+        ];
+        if($edit){
+            unset($validation['password']);
+        }
+
+        return $validation;
+    }
 }

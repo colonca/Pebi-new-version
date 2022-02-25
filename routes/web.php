@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 		Route::view('/talleristas', 'pages.generales.talleristas.index')->name('generales.talleristas');
 		Route::view('/campañas', 'pages.generales.campanhas.index')->name('generales.campanhas');
 		Route::view('/talleres-grupales', 'pages.generales.talleres_grupales.index')->name('generales.talleres_grupales');
+        Route::view('/docentes-permanencia','pages.generales.docentes.index')->name('generales.docentes-permanencia');
 	});
 
     Route::prefix('reportes')->group(function() {
@@ -57,5 +58,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::view('/individuales/index', 'pages.intervenciones.individuales.index');
 	});
 
-
+    //modulo de usuarios
+    Route::prefix('usuarios')->group(function (){
+        Route::view('/users','pages.usuarios.index')->name('usuarios.index');
+    });
 });

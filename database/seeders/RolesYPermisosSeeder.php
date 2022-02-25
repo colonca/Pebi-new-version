@@ -20,6 +20,7 @@ class RolesYPermisosSeeder extends Seeder
 		$secretaria = Role::create(['name' => 'secretaria']);
 		$profesional = Role::create(['name' => 'tallerista-profesional']);
 		$practicante = Role::create(['name' => 'tallerista-practicante']);
+        $docente = Role::create(['name'=>'docente-permanencia']);
 
 		//intervenciones grupales
 		Permission::create(['name' => 'intervenciones-grupales.index'])->syncRoles([$admin, $profesional, $practicante]);
