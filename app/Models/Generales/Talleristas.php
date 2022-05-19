@@ -39,7 +39,8 @@ class Talleristas extends Model
 		];
 	}
 
-    public function horarios() {
-        return $this->belongsToMany(Horario::class,'disponibilidad_talleristas','tallerista_id','horario_id');
-    }
+	public function horarios()
+	{
+		return $this->belongsToMany(Horario::class, 'disponibilidad_talleristas', 'tallerista_id', 'horario_id');
+	}
 }

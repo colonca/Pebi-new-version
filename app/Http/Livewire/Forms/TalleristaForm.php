@@ -81,7 +81,6 @@ class TalleristaForm extends BaseForm
 			$this->emit('list:refresh');
 			$this->closeModal();
 		} catch (Exception $e) {
-            dd($e);
 			DB::rollBack();
 			$this->message('Hubo un error en el servidor, por favor contacta con el administrador.');
 		}

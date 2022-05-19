@@ -21,8 +21,7 @@ class CreateHistoricoTable extends Migration
             $table->foreign('estudiante_id')->references('id')->on('estudiantes')->onDelete('CASCADE');
             $table->foreignId('periodo_id')->comment('Campo foráneo a la tabla periodoacademico');
             $table->foreign('periodo_id')->references('id')->on('periodos_academicos')->onDelete('CASCADE');
-            $table->foreignId('riesgo_id')->comment('Campo foráneo a la tabla riesgo');
-            $table->foreign('riesgo_id')->references('id')->on('riesgos')->onDelete('CASCADE');
+            $table->string('riesgo');
             $table->timestamps();
         });
     }

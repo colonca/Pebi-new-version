@@ -185,6 +185,7 @@ class IntervencionGrupalForm extends BaseForm
 	{
 		if (!empty($this->form['programa_id'])) {
 			$this->asignaturas = Asignaturas::where('programa_id', $this->form['programa_id'])->orderBy('nombre')->get();
+            $this->emit('changeList', 'asignaturas');
 		}
 
 		if (!empty($this->form['linea_id'])) {

@@ -12,7 +12,7 @@
 								<div class="w-1/2 mr-2">
 									<x-jet-label for="nombre" value="{{ __('Tallerista') }}" />
 									<div class="mt-2">
-										<select name="programa" wire:model="form.tallerista_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+										<select id="tallerista" name="tallerista" wire:model="form.tallerista_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm select2">
 											<option value="">Seleccione un Tallerista</option>
 											@foreach ($talleristas as $tallerista)
 											<option value='{{$tallerista->id}}'>{{$tallerista->nombres}}</option>
@@ -31,7 +31,7 @@
 							<div class="w-1/2 mr-2">
 								<x-jet-label for="nombre" value="{{ __('Programa') }}" />
 								<div class="mt-2">
-									<select name="programa" wire:model="form.programa_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+									<select id="programa" name="programa" wire:model="form.programa_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm select2">
 										<option value="">Seleccione un Programa</option>
 										@foreach ($programas as $programa)
 										<option value='{{$programa->id}}'>{{$programa->nombre}}</option>
@@ -42,7 +42,7 @@
 							<div class="w-1/2 mr-2">
 								<x-jet-label for="nombre" value="{{ __('Asignatura') }}" />
 								<div class="mt-2">
-									<select name="asignatura" wire:model="form.asignatura_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+									<select id="asignaturas" name="asignatura" wire:model="form.asignatura_id" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm select2">
 										<option value="">Seleccione una Asignatura</option>
 										@foreach ($asignaturas as $asignatura)
 										<option value='{{$asignatura->id}}'>{{$asignatura->nombre}}</option>
@@ -63,7 +63,7 @@
 							<div class="w-1/3 mr-2">
 								<x-jet-label for="linea" value="{{ __('Linea') }}" />
 								<div class="mt-2">
-									<select id="linea" name="linea" wire:model="form.linea_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+									<select id="linea" name="linea" wire:model="form.linea_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm select2">
 										<option value="">Seleccione la linea</option>
 										@foreach ($lineas as $linea)
 										<option value='{{$linea->id}}'>{{$linea->slug}}</option>
@@ -74,7 +74,7 @@
 							<div class="w-1/3 mr-2">
 								<x-jet-label for="campanha" value="{{ __('Campaña') }}" />
 								<div class="mt-2">
-									<select id="campanha" name="taller" wire:model="form.campanha_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+									<select id="campanha" name="taller" wire:model="form.campanha_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm select2">
 										<option value="">Seleccione campaña</option>
 										@foreach ($campanhas as $campanha)
 										<option value='{{$campanha->id}}'>{{$campanha->nombre}}</option>
@@ -85,7 +85,7 @@
 							<div class="w-1/3 mr-2">
 								<x-jet-label for="taller" value="{{ __('Taller') }}" />
 								<div class="mt-2">
-									<select id="taller" name="taller" wire:model="form.taller_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+									<select id="taller" name="taller" wire:model="form.taller_id" class="w-full max-w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm select2">
 										<option value="">Seleccione taller</option>
 										@foreach ($talleres as $taller)
 										<option value='{{$taller->id}}'>{{$taller->nombre}}</option>

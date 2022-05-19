@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Generales\PeriodosAcademicos;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,15 +17,13 @@ class DatabaseSeeder extends Seeder
 		$this->call(UserSeeder::class);
 		$this->call(LineaSeeder::class);
 		$this->call(Campanhas::class);
-		$this->call(TalleresGrupalesSeeder::class);
-        $this->call(PeriodosAcademicosSeeder::class);
+		$this->call(PeriodosAcademicosSeeder::class);
 		$this->call(FacultadSeeder::class);
 		$this->call(ProgramasSeeder::class);
 		$this->call(RiesgosSeeder::class);
 		$this->call(EstudiantesSeeder::class);
 		$this->call(AsignaturasSeeder::class);
 		$this->call(TalleristasSeeder::class);
-        $this->call(HorarioSeeder::class);
-		$this->call(IntervencionesGrupalesSeeder::class);
+		$this->call(HorarioSeeder::class);
 	}
 }

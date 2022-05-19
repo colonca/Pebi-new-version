@@ -19,6 +19,8 @@ class CreateDocentesTable extends Migration
             $table->string('nombres')->comment('Nombre completo del tallerista');
             $table->string('celular', 20)->comment('numero de telefono de contacto');
             $table->string('correo_institucional')->comment('correo institucional');
+            //$table->foreignId('programa')->comment('programa al que pertenece el programa');
+            //$table->foreign('programa')->references('id')->on('programas');
             $table->softDeletes();
             $table->timestamps();
         });

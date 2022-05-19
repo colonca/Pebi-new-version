@@ -22,8 +22,8 @@ class CreateEstudiantesTable extends Migration
 			$table->string('primer_apellido', 30)->comment('Primer apellido del estudiante');
 			$table->string('segundo_apellido', 30)->comment('Segundo apellido del estudiante');
 			$table->string('direccion')->nullable()->comment('Dirección de residencia del estudiante');
-			$table->string('telefono', 15)->nullable()->comment('Telefono del estudiante');
-			$table->string('celular', 15)->nullable()->comment('Numero de celular del estudiante');
+			$table->string('telefono', 30)->nullable()->comment('Telefono del estudiante');
+			$table->string('celular', 30)->nullable()->comment('Numero de celular del estudiante');
 			$table->string('correo', 100)->nullable()->comment('Correo electronico del estudiante');
 			$table->string('estado', 12)->comment('Estado del estudiante');
 			$table->date('fecha_nacimiento')->comment('Fecha de nacimiento del estudiante');

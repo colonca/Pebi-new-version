@@ -26,7 +26,7 @@ class ProgramasSeeder extends Seeder
 			foreach ($programas as $programa) {
 				Programas::updateOrCreate(
 					['id' => $programa['id']],
-					['nombre' => $programa['nombre'], 'facultad_id' => $facultad->id]
+					['nombre' => $programa['nombre'], 'facultad_id' => $facultad->id, 'sede' => $programa['sede']]
 				);
 			}
 		}

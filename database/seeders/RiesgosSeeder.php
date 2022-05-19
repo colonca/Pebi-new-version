@@ -16,27 +16,27 @@ class RiesgosSeeder extends Seeder
     {
         $riesgos = [
             [
-                'descripcion' => 'Riesgo súper alto',
+                'descripcion' => 'RIESGO SUPER ALTO',
                 'nota_inicio' => 0,
                 'nota_fin' => 2.9
             ],
             [
-                'descripcion' => 'Riesgo alto',
+                'descripcion' => 'RIESGO ALTO',
                 'nota_inicio' => 3,
                 'nota_fin' => 3.3
             ],
             [
-                'descripcion' => 'Riesgo medio',
+                'descripcion' => 'RIESGO MEDIO',
                 'nota_inicio' => 3.4,
                 'nota_fin' => 3.7
             ],
             [
-                'descripcion' => 'Riesgo bajo',
+                'descripcion' => 'RIESGO BAJO',
                 'nota_inicio' => 3.8,
                 'nota_fin' => 4.2
             ],
             [
-                'descripcion' => 'Riesgo súper bajo',
+                'descripcion' => 'RIESGO SUPER BAJO',
                 'nota_inicio' => 4.3,
                 'nota_fin' => 5
             ]

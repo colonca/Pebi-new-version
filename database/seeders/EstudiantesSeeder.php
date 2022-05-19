@@ -8,6 +8,7 @@ use App\Models\Generales\PeriodosAcademicos;
 use App\Models\Generales\Programas;
 use App\Models\Generales\Riesgo;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -19,21 +20,21 @@ class EstudiantesSeeder extends Seeder
 		$start = microtime(true);
 		echo "Seeded: " . EstudiantesSeeder::class . "\n";
 		echo "Sincronizando Estudiantes \n";
-        $riesgos = Riesgo::all()->mapWithKeys(function ($item) {
-            return [$item['descripcion'] => $item];
-        });
+		$riesgos = Riesgo::all()->mapWithKeys(function ($item) {
+			return [$item['descripcion'] => $item];
+		});
 		$programas = Programas::all();
 		$prev = 0;
 		$loop = 0;
-        $periodo = PeriodosAcademicos::where('estado', 'ACTIVO')->first();
-        if(!$periodo){
-            echo 'Error: no se encuentran periodos activos';
-            return;
-        }
-        if(empty($riesgos)){
-            echo 'Error: no existen riesgos registrados';
-            return;
-        }
+		$periodo = PeriodosAcademicos::where('estado', 'ACTIVO')->first();
+		if (!$periodo) {
+			echo 'Error: no se encuentran periodos activos';
+			return;
+		}
+		if (empty($riesgos)) {
+			echo 'Error: no existen riesgos registrados';
+			return;
+		}
 		foreach ($programas as $programa) {
 			$url = config('academosoft.host') . '/unicesar/academusoft/academico/integracion/estudiantesPrograma.jsp?programa=' . $programa->id;
 			$response = Http::get($url);
@@ -41,38 +42,40 @@ class EstudiantesSeeder extends Seeder
 				continue;
 			$estudiantes = $response->json()['data'];
 			foreach ($estudiantes as $estudiante) {
-                DB::beginTransaction();
+				DB::beginTransaction();
 				$model = Estudiantes::updateOrCreate(
 					['identificacion' => $estudiante['identificacion']],
 					[
-						'tipo_documento' => ['CC', 'TI', 'CE'][rand(0, 2)],
+						'tipo_documento' => $estudiante['tipo_documento'],
 						'primer_nombre' => $estudiante['primer_nombre'],
 						'segundo_nombre' => key_exists('segundo_nombre', $estudiante) ? $estudiante['segundo_nombre'] : '',
 						'primer_apellido' => $estudiante['primer_apellido'],
 						'segundo_apellido' => key_exists('segundo_apellido', $estudiante) ? $estudiante['segundo_apellido'] : '',
 						'correo' => key_exists('correo', $estudiante) ? $estudiante['correo'] : '',
 						'semestre' => $estudiante['semestre'],
-						'celular' => '3052891290',
-						'telefono' => '3082019302',
+						'celular' =>  key_exists('celular', $estudiante) ? $estudiante['celular'] : '',
+						'telefono' => key_exists('telefono', $estudiante) ? $estudiante['telefono'] : '',
+						'procedencia' => $estudiante['procedencia'],
 						'estado' => $estudiante['estado'],
-						'fecha_ingreso' => date('Y-m-d'),
-						'fecha_nacimiento' => date('Y-m-d'),
+						'fecha_ingreso' => key_exists('fecha_ingreso', $estudiante) ? $estudiante['fecha_ingreso'] : date('Y-m-d'),
+						'fecha_nacimiento' => key_exists('fecha_nacimiento', $estudiante) ? $estudiante['fecha_nacimiento'] : date('Y-m-d'),
 						'programa_id' => $programa->id,
-						'sexo' => ['m', 'f'][rand(0, 1)],
-						'sede' => 'VALLEDUPAR',
+						'sexo' => $estudiante['sexo'],
+						'sede' => $estudiante['sede'],
 					]
 				);
-                Historico::updateOrCreate(
-                    ['periodo_id' => $periodo->id, 'estudiante_id' => $model->id],
-                    [
-                      'periodo_id' => $periodo->id,
-                      'estudiante_id' => $model->id,
-                      'semestre_actual' => $model->semestre,
-                      'riesgo_id' => $riesgos['Riesgo medio']->id,
-                      'estado' => $model->estado,
-                    ]
-                );
-                DB::commit();
+				//74188
+				Historico::updateOrCreate(
+					['periodo_id' => $periodo->id, 'estudiante_id' => $model->id],
+					[
+						'periodo_id' => $periodo->id,
+						'estudiante_id' => $model->id,
+						'semestre_actual' => $model->semestre,
+						'riesgo' => $estudiante['riesgo'],
+						'estado' => $model->estado,
+					]
+				);
+				DB::commit();
 			}
 			$done = intval(100 * ($loop) / count($programas));
 			echo $prev . '% done ...' . "\n";

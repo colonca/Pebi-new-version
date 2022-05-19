@@ -53,7 +53,7 @@
  				@endcan
  			</x-slot>
  		</x-sidebar.dropdown>
- 		<x-sidebar.dropdown title="Academico" :active="false">
+ 		<x-sidebar.dropdown title="Academico" :active="request()->is('academico*')">
  			<x-slot name="icon">
  				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
  					<path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -78,7 +78,7 @@
                 @endcan
  			</x-slot>
  		</x-sidebar.dropdown>
- 		<x-sidebar.dropdown title="Intervenciones" :active="false">
+ 		<x-sidebar.dropdown title="Intervenciones" :active="request()->is('intervenciones*')">
  			<x-slot name="icon">
  				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
  					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -93,15 +93,25 @@
  				</x-sidebar.link>
  				@endcan
                 @can('intervenciones-individuales.index')
- 				<x-sidebar.link title="Individuales" :link="url('intervenciones/individuales')" :active="request()->is('intervenciones/individuales*')">
+ 				<x-sidebar.link title="Solicitudes" :link="url('intervenciones/solicitudes/index')" :active="request()->is('intervenciones/solicitudes*')">
  					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
  						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
  					</svg>
  				</x-sidebar.link>
                 @endcan
+                    <x-sidebar.link title="Historias Psicologicas" :link="url('intervenciones/historias/index')" :active="request()->is('intervenciones/historias*')">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </x-sidebar.link>
+					<x-sidebar.link title="Remisiones" :link="url('intervenciones/remisiones/index')" :active="request()->is('intervenciones/remisiones*')">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+						  </svg>
+                    </x-sidebar.link>
  			</x-slot>
  		</x-sidebar.dropdown>
-        <x-sidebar.dropdown title="Reportes" :active="false">
+        <x-sidebar.dropdown title="Reportes" :active="request()->is('reportes*')">
             <x-slot name="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
