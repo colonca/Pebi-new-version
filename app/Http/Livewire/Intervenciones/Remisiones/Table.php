@@ -19,10 +19,8 @@ class Table extends Component
 
     public function render()
     {
-        $user = Auth::user();
-
         return view('livewire.intervenciones.remisiones.table', [
-            'remisiones' => Remision::with('talleristaRelation', 'solicitudRelation')->paginate(8)
+            'remisiones' => Remision::with('talleristaRelation', 'solicitudRelation')->where('estado', 'PENDIENTE')->paginate(8)
         ]);
     }
 
@@ -36,6 +34,12 @@ class Table extends Component
             $this->message('La solicitud que esta intentando modificar no se puede reagendar.', 'warning');
         }
 
-        $this->openModal('forms.remision-form', ['solicitud' => $solicitud->id, 'area' => $solicitud->motivo], 'w-2/5');
+        $this->openModal('forms.remision-form', ['solicitud' => $solicitud->id, 'area' => $solicitud->motivo], 'w-3/5');
+    }
+
+    public function atender($remision)
+    {
+        $remision = Remision::find($remision);
+        $this->openModal('forms.atender-form', [$remision], 'w-3/5');
     }
 }

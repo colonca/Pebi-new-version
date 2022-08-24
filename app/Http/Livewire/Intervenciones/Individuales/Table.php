@@ -60,6 +60,6 @@ class Table extends Component
 		$solicitud = Solicitud::find($id);
 		if (!$solicitud) return;
 
-		return $this->openModal('forms.remision-form', ['solicitud' => $solicitud->id, 'area' => $solicitud->motivo], 'w-2/5');
+		return $this->openModal('forms.remision-form', ['solicitud' => $solicitud->id, 'area' => $solicitud->motivo], 'w-3/5');
 	}
 }

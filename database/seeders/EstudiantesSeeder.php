@@ -8,7 +8,6 @@ use App\Models\Generales\PeriodosAcademicos;
 use App\Models\Generales\Programas;
 use App\Models\Generales\Riesgo;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -64,7 +63,6 @@ class EstudiantesSeeder extends Seeder
 						'sede' => $estudiante['sede'],
 					]
 				);
-				//74188
 				Historico::updateOrCreate(
 					['periodo_id' => $periodo->id, 'estudiante_id' => $model->id],
 					[

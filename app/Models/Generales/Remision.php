@@ -22,7 +22,8 @@ class Remision extends Model
             'solicitud' => '',
             'area' => '',
             'tallerista' => '',
-            'horario' => ''
+            'horario' => '',
+            'estado' => ''
         ];
     }
 

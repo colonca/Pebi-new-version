@@ -3,7 +3,7 @@
 @section('content')
     <x-breadcrumbs :items="[
       ['title' => 'Inicio', 'url' => 'dashboard'],
-      ['title' => 'Historias Psicologicas','url' => '']
+      ['title' => 'Orientación Psicosocial','url' => '']
    ]" />
     <div class="w-4/5"></div>
     <livewire:intervenciones.historias.table />

@@ -14,10 +14,10 @@ class HistoriaPsicologica extends Model
     protected $table = 'historia_psicologica';
 
     protected $fillable = [
-        'id','estudiante_id', 'estado_civil',
+        'id', 'estudiante_id', 'estado_civil',
         'trabaja', 'procedencia_recursos', 'tipo_familia',
         'relacion_compañeros', 'relacion_docente',
-        'direccion', 'plan_de_accion','conclusiones', 'soporte'
+        'direccion', 'plan_de_accion', 'conclusiones', 'soporte'
     ];
 
     public static function validationRules(): array
@@ -37,7 +37,12 @@ class HistoriaPsicologica extends Model
 
     public function estudiante()
     {
-        return $this->belongsTo(Estudiantes::class, 'estudiante_id','id', 'estudiantes');
+        return $this->belongsTo(Estudiantes::class, 'estudiante_id', 'id', 'estudiantes');
+    }
+
+    public function seguimientos()
+    {
+        return $this->hasMany(Seguimiento::class, 'historia_id', 'id');
     }
 
     public function estadoCivil()
@@ -50,8 +55,8 @@ class HistoriaPsicologica extends Model
         return $this->belongsTo(Familias::class, 'tipo_familia', 'id');
     }
 
-    public function problemas(){
-        return $this->belongsToMany(ImpresionDiagnostica::class, 'rel_historia_impresion','historia_psicologica_id','impresion_diagnostica_id');
+    public function problemas()
+    {
+        return $this->belongsToMany(ImpresionDiagnostica::class, 'rel_historia_impresion', 'historia_psicologica_id', 'impresion_diagnostica_id');
     }
-
 }

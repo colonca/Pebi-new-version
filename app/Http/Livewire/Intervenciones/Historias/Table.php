@@ -38,6 +38,19 @@ class Table extends Component
         $this->message("Esta historia psicologica no ha sido cargada con ningun soporte.");
     }
 
+    public function seguimiento($id)
+    {
+        $historia = HistoriaPsicologica::find($id);
+        $this->openModal('forms.seguimiento-form',  $historia->load('estudiante.programa'), 'w-4/5');
+    }
+
+    public function ver_detalle($id)
+    {
+        $historia = HistoriaPsicologica::find($id);
+        $this->openModal('forms.detalle-historia-form', $historia->load('estudiante.programa', 'seguimientos.tallerista'),  'w-4/5');
+    }
+
+
     public function create()
     {
         return $this->openModal('forms.historias-form', [], 'w-4/5');
