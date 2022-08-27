@@ -18,6 +18,7 @@ class SolicitudForm extends BaseForm
 
     public $query = '';
     public $estudiante;
+    public bool $loading = false;
 
     public $form = [
         'id' => '',
@@ -90,7 +91,7 @@ class SolicitudForm extends BaseForm
         }
 
         try {
-            DB::beginTransaction();
+            $this->loading = true;
             $solicitud = Solicitud::updateOrCreate(
                 ['id' => $data['id']],
                 $data
@@ -103,12 +104,12 @@ class SolicitudForm extends BaseForm
                 }
                 $solicitud->horarios()->sync($dis);
             }
-            DB::commit();
+            $this->loading = false;
             $this->message('Solicitud Guardada Correctamente');
             $this->emit('list:refresh');
             $this->closeModal();
         } catch (Exception $e) {
-            dd('error ' . $e);
+            $this->loading = false;
             DB::rollBack();
             $this->message('Hubo un error en el servidor, por favor contacta con el administrador.');
         }

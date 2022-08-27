@@ -6,14 +6,14 @@
                     {{$title}}
                 </h3>
             </div>
-			<p class="mt-2">¿Esta seguro que desea atender al estudiante {{$estudiante}}?</p>
+			<p class="mt-2">¿Esta seguro que desea cancelar la remision para {{$estudiante}}?</p>
         </div>
 		<div class="flex justify-end">
 			<x-jet-secondary-button wire:click="cancel" wire:loading.attr="disabled">
-				Cancelar
+				No,Cancelar
 			</x-jet-secondary-button>
 			<x-jet-danger-button class="ml-2" wire:click="submit" wire:loading.attr="disabled">
-				Atender
+                Si, Cancelar
 			</x-jet-danger-button>
 		</div>
     </div>

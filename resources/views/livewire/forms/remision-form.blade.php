@@ -5,7 +5,7 @@
                 {{$title}}
             </h3>
        </div>
-       <form wire:submit.prevent="submit">
+       <form>
             <div>
                 <h3 class="my-2 border-b-2 border-gray-200 font-semibold" style="border-style: dashed">TRAZABILIDAD</h3>
             </div>

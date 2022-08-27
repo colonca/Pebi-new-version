@@ -6,7 +6,7 @@
                     {{$title}}
                 </h3>
             </div>
-            <form wire:submit.prevent="submit">
+            <form>
                 <h3 class="font-bold">ESTUDIANTE</h3>
                 <x-flash-message />
                 @error('form.estudiante_id')

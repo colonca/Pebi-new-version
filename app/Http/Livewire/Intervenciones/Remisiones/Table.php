@@ -6,7 +6,6 @@ use App\Http\Livewire\Traits\InteractsWithFlashMessage;
 use App\Http\Livewire\Traits\InteractsWithModal;
 use App\Models\Generales\Remision;
 use App\Models\Intervenciones\Solicitud;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Table extends Component
@@ -40,6 +39,12 @@ class Table extends Component
     public function atender($remision)
     {
         $remision = Remision::find($remision);
-        $this->openModal('forms.atender-form', [$remision], 'w-3/5');
+        $this->openModal('forms.atender-form', $remision->load('solicitudRelation.estudianteRelation'), 'w-3/5');
+    }
+
+    public function cancelar($remision)
+    {
+        $remision = Remision::find($remision);
+        $this->openModal('forms.cancelar-solicitud-form', $remision->load('solicitudRelation.estudianteRelation'), 'w-3/5');
     }
 }

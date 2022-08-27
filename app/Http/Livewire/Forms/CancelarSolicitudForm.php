@@ -6,9 +6,8 @@ use App\Http\Livewire\Traits\InteractsWithFlashMessage;
 use App\Http\Livewire\Traits\InteractsWithModal;
 use App\Models\Generales\Remision;
 
-class AtenderForm extends BaseForm
+class CancelarSolicitudForm extends BaseForm
 {
-
     use InteractsWithModal;
     use InteractsWithFlashMessage;
 
@@ -27,11 +26,11 @@ class AtenderForm extends BaseForm
     public function submit()
     {
         $remision = Remision::findOrFail($this->remision);
-        $remision->estado = 'FINALIZADA';
+        $remision->estado = 'CANCELADA';
         $remision->save();
         $this->emit('list:refresh');
         $this->closeModal();
-        $this->message('Estudiante atendido correctamente');
+        $this->message('Remision cancelada correctamente.');
     }
 
     public function cancel()
@@ -41,6 +40,6 @@ class AtenderForm extends BaseForm
 
     public function render()
     {
-        return view('livewire.forms.atender-form');
+        return view('livewire.forms.cancelar-solicitud-form');
     }
 }
