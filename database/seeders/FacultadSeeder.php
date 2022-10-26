@@ -16,8 +16,12 @@ class FacultadSeeder extends Seeder
 	public function run()
 	{
 		$url = config('academosoft.host') . '/unicesar/academusoft/academico/integracion/facultades.jsp';
+		$url .= '&user=' . config('academosoft.user');
+		$url .= '&password=' . config('academosoft.password');
+		$url .= '&token=' . config('academosoft.token');
 		$response = Http::get($url);
-		if ($response->status() === 200) {
+		echo  "Consulta de Facultades" . $response->status();
+		if ($response->status() === 200 && $response->json() !== null) {
 			$response = $response->json();
 			$facultades = $response['data'];
 			foreach ($facultades as $facultad) {

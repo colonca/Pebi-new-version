@@ -19,9 +19,11 @@ class ProgramasSeeder extends Seeder
 		$facultades = Facultad::all();
 		foreach ($facultades as $facultad) {
 			$url = config('academosoft.host') . '/unicesar/academusoft/academico/integracion/programa.jsp?facultad=' . $facultad->id;
+			$url .= '&user=' . config('academosoft.user');
+			$url .= '&password=' . config('academosoft.password');
+			$url .= '&token=' . config('academosoft.token');
 			$response = Http::get($url);
-			if ($response->status() !== 200 && $response->json()['status'] !== "200")
-				continue;
+			if ($response->status() !== 200 || $response->json() !== null) continue;
 			$programas = $response->json()['data'];
 			foreach ($programas as $programa) {
 				Programas::updateOrCreate(

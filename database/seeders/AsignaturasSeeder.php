@@ -20,9 +20,11 @@ class AsignaturasSeeder extends Seeder
 		$loop = 0;
 		foreach ($programas as $programa) {
 			$url = config('academosoft.host') . '/unicesar/academusoft/academico/integracion/asignatura.jsp?programa=' . $programa->id;
+			$url .= '&user=' . config('academosoft.user');
+			$url .= '&password=' . config('academosoft.password');
+			$url .= '&token=' . config('academosoft.token');
 			$response = Http::get($url);
-			if ($response->status() !== 200 && $response->json()['status'] !== "200")
-				continue;
+			if ($response->status() !== 200 || $response->json() === null) continue;
 			$asignaturas = $response->json()['data'];
 			foreach ($asignaturas as $asignatura) {
 				Asignaturas::updateOrcreate(['codigo' => $asignatura['codigo'], 'programa_id' => $programa->id], [
