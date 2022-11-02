@@ -6,7 +6,7 @@
                     {{$title}}
                 </h3>
             </div>
-            <form>
+            <form wire:submit.prevent="submit" >
                 <h3 class="font-bold">ESTUDIANTE</h3>
                 <x-flash-message />
                 @error('form.estudiante_id')
@@ -94,7 +94,7 @@
                         {{ __('Cancelar') }}
                     </a>
                     <div wire:loading.remove >
-                        <x-jet-button wire:click="submit" class="ml-4">
+                        <x-jet-button type="submit" class="ml-4">
                             {{ __('Guardar') }}
                         </x-jet-button>
                     </div>

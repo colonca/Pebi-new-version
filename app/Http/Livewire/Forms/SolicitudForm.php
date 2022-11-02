@@ -25,7 +25,7 @@ class SolicitudForm extends BaseForm
         'estado' => 'PENDIENTE',
         'motivo' => '',
         'discapacidad' => '',
-        'esDiscapacitado' => '',
+        'esDiscapacitado' => 'NO',
         'estudiante' => '',
         'fecha' => '',
         'disponibilidad' => []
